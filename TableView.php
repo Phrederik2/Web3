@@ -1,10 +1,6 @@
 <?php
 class TableView{
-    /**
-     * test
-  
-     */
-    /*test2*/
+    
 
     protected $id;
     protected $col1;
