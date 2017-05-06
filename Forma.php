@@ -1,4 +1,5 @@
 <?php
+//test
 session_start ();
 /**
  * interface afin d'obliger les meme fonction dans les objects
