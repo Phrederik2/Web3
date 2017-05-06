@@ -8,23 +8,35 @@ class Controller{
     
     public function __construct()
     {
+
         $this->dbCo = new DbCo();
+    }
+
+    function switchMenu()
+    {
+        if (isset($_GET["menu"])){
+            switch ($_GET["menu"]) {
+                case 'user':
+                   $this->getTableView($_GET["menu"],"lastname","firstname");
+                    break;
+                case 'student':
+                    # code...
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
     }
     
     function setForm(){
-        //$userList = $this->dbCo->getUserList();
-        /*foreach($userList as $test){
-        echo $test->getLastName();
-        }*/
+        
         include("view/UserView.php");
     }
     
-    function getTableView(){
-        if(isset($_GET['menu'])){
-            $crtList = $this->dbCo->getTableViewList($_GET['menu'],$_GET['colonne1'],$_GET['colonne2']);
-        }else{
-            $crtList = $this->dbCo->getTableViewList('user','lastName','firstName');
-        }
+    function getTableView($menu,$column1,$column2){
+            $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2); 
         include("view/TableList.php");
     }
 }

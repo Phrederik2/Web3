@@ -2,11 +2,10 @@
 
 <html lang="en">
 
-<html lang="EN">
-
     <head>
         <title></title>
         <meta charset="UTF-8">
+       
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <style type="text/css">
@@ -38,7 +37,7 @@
     <header>
         <nav>
             <ul id="menuPrin">
-            <li><a href=index.php?menu=user&colonne1=lastname&colonne2=firstName>User</a></li>
+            <li><a href=index.php?menu=user>User</a></li>
             <li><a href=index.php?menu=student&colonne1=lastname&colonne2=firstName>Student</a></li>
             </ul>
         </nav>
@@ -49,7 +48,7 @@
 
             require_once("Controller.php");
             $controller = new Controller();
-            $controller->getTableView();
+           $controller->switchMenu();
             ?>
         </aside>
         <article>

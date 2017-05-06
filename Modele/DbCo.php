@@ -132,20 +132,12 @@ class DbCo
          $tableList = array();
         
         $Qry = "select id,{$col1},{$col2} from {$table}";
-        echo $Qry;
+        //echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
             $entry = new TableView();
-           /*$user->setId($row['idUser']);
-            //$user->setLogin($row['login']);
-            $user->setlastName($row['lastName']);
-            $user->setfirstName($row['firstName']);
-            $user->setPassword($row['password']);
-            $user->setIsAdmin($row['isAdmin']);
-            $user->setIsChange($row['isChange']);
-            $user->setDeleted($row['isDeleted']);*/
             $entry->setId($row['id']);
             $entry->setCol1($row[$col1]);
             $entry->setCol2($row[$col2]);
