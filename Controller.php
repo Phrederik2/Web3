@@ -5,7 +5,8 @@ define ( "FILE", basename ( $_SERVER ['SCRIPT_FILENAME'] ) );
 
 class Controller{
     
-    private $dbCo;//Création d'une istance de la classe de connectin qui sert à appelé les différentes query
+    private $dbCo;//Création d'une istance de la classe de connection qui sert à appelé les différentes query
+    private $pivot = null;
     
     public function __construct()
     {
