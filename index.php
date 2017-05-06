@@ -38,7 +38,7 @@
         <nav>
             <ul id="menuPrin">
             <li><a href=index.php?menu=user>User</a></li>
-            <li><a href=index.php?menu=student&colonne1=lastname&colonne2=firstName>Student</a></li>
+            <li><a href=index.php?menu=student>Student</a></li>
             </ul>
         </nav>
     </header>
@@ -54,6 +54,7 @@
         <article>
              <?php
                 $controller->setForm();
+                $controller->setAssoc();
             ?>
         </article>
     </section>

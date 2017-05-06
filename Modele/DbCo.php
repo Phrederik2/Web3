@@ -148,4 +148,47 @@ class DbCo
         
         return $tableList;
     }
+
+    function getTableViewFreed($table,$col1,$col2){
+         $tableList = array();
+        
+        $Qry = "select id,{$col1},{$col2} from {$table}";
+        //echo $Qry;
+        $statement = DbCo::$pdo->query($Qry);
+        
+        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $entry = new TableView();
+            $entry->setId($row['id']);
+            $entry->setCol1($row[$col1]);
+            $entry->setCol2($row[$col2]);
+            
+            
+            $tableList[] = $entry;
+        }
+        
+        return $tableList;
+    }
+
+    function getTableViewAssociate($table,$col1,$col2,$destination,$pivot,$idItem){
+         $tableList = array();
+        
+        $Qry = "SELECT $destination.ID, $destination.$col1, $destination.$col2 FROM $destination JOIN $pivot ON $destination.ID=$pivot.$destination WHERE $pivot.$table = $idItem AND $destination.IsDelete=0";
+        //echo $Qry;
+        $statement = DbCo::$pdo->query($Qry);
+        
+        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $entry = new TableView();
+            $entry->setId($row['ID']);
+            $entry->setCol1($row[$col1]);
+            $entry->setCol2($row[$col2]);
+            
+            
+            $tableList[] = $entry;
+        }
+        
+        return $tableList;
+    }
+
 }

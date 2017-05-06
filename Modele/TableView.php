@@ -1,14 +1,12 @@
 <?php
 class TableView{
 
-    protected $id;
-    protected $col1;
-    protected $col2;
+    protected $id=0;
+    protected $col1=null;
+    protected $col2=null;
 
     function __construct(){
-        $this->setId(0);
-        $this->setCol1("null");
-        $this->setCol2("null");
+        
     }
 
     function getId(){

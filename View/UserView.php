@@ -1,6 +1,10 @@
 <?php
 require_once("forma.php");
 
+$formName = "user";
+$id = $_GET['id'];
+$menu = $_GET['menu'];
+
 $userForm = new Form("User");
 
 $userForm->add(new Text("LastName"));
@@ -12,10 +16,8 @@ $select->add ( new Option ( - 1, "Activate" ) );
 $select->add ( new Option ( 0, "Desactivate" ) );
 $userForm->add ( $select );
 
-if($_GET['menu']="user" and isset($_GET['id'])){
-    $userForm->bind(DbCo::getPDO(),"user","ID = '{$_GET['id']}'");
-}else{
-$userForm->bind(DbCo::getPDO(),"user","ID = 5");
+if($_GET['menu']=$formName and isset($id)){
+    $userForm->bind(DbCo::getPDO(),$formName,"ID = '$id'");
 }
 
 echo $userForm->toString();
