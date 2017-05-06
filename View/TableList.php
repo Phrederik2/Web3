@@ -4,9 +4,6 @@ $tbv = "<nav id=\"test\"><ul>";
 
 foreach($crtList as $crtEntry){
     
-    /*if(!isset($_GET['menu'])){
-        $_GET['menu'] = "user";
-    }*/
 
     if(isset($pivot)){
         
