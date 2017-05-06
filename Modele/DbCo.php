@@ -132,12 +132,11 @@ class DbCo
         $tableList = array();
         
         $Qry = "select id,{$col1},{$col2} from {$table}";
-        echo $Qry;
+
         $statement = DbCo::$pdo->query($Qry);
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
-            //var_dump($row);
 
             $entry = new TableView();
             $entry->setId($row['id']);

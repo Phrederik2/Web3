@@ -89,19 +89,19 @@ function setFreed()
 }
 
 function getTableView($menu,$column1,$column2){
-    $pivot = "null";
+    $GEToption = "null";
     $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
     include("view/TableList.php");
 }
 
 function getTableViewAssoc($menu,$column1,$column2,$destination,$pivot,$idItem){
-    $pivot = "assoc";
+    $GEToption = "assoc";
     $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
 }
 
 function getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem){
-    $pivot = "freed";
+    $GEToption = "freed";
     $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
 }
