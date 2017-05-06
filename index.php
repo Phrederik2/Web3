@@ -7,6 +7,16 @@
     <head>
         <title></title>
         <meta charset="UTF-8">
+        <?php
+        $str="";
+        if(isset($_GET)){
+            foreach ($_GET as $key => $value) {
+                if ($str!="")$str.="?";
+               $str.="$key=$value";
+            }
+        }
+        echo $str;
+        ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <style type="text/css">
