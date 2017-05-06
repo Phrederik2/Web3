@@ -20,11 +20,11 @@ class DbCo
         try
         {
             //Utilisation d'une connexion pdo
-            DbCo::$pdo = new PDO("mysql:host={$this->localhost};dbname=".$this->db,$this->user,$this->password);      
-        } 
-        catch(Exception $e)   
-        {      
-            die('Erreur : '.$e->getMessage());       
+            DbCo::$pdo = new PDO("mysql:host={$this->localhost};dbname=".$this->db,$this->user,$this->password);
+        }
+        catch(Exception $e)
+        {
+            die('Erreur : '.$e->getMessage());
         }
     }
     
@@ -78,7 +78,7 @@ class DbCo
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
             $user = new User($row["ID"],$row["ISADMIN"],$row["ISCHANGE"],$row["ISDELETE"],$row["LASTNAME"],$row["FIRSTNAME"],$row["PASSWORD"]);
-           /*$user->setId($row['idUser']);
+            /*$user->setId($row['idUser']);
             //$user->setLogin($row['login']);
             $user->setlastName($row['lastName']);
             $user->setfirstName($row['firstName']);
@@ -117,26 +117,28 @@ class DbCo
     {
         // try
         // {
-            $editUserQry = "update sauser set login='{$user->getlogin()}',level={$user->getLevel()},deleted={$user->getDeleted()} where idUser={$user->getIdUser()}";
-            $statement = DbCo::$pdo->query($editUserQry);
+        $editUserQry = "update sauser set login='{$user->getlogin()}',level={$user->getLevel()},deleted={$user->getDeleted()} where idUser={$user->getIdUser()}";
+        $statement = DbCo::$pdo->query($editUserQry);
         //}
         // catch(Exception $e)
         // {
-           // echo('Erreur : '.$e->getMessage());
-            //return;
+        // echo('Erreur : '.$e->getMessage());
+        //return;
         //}
         //var_dump($editUserQry);
     }
-
+    
     function getTableViewList($table,$col1,$col2){
-         $tableList = array();
+        $tableList = array();
         
         $Qry = "select id,{$col1},{$col2} from {$table}";
-        //echo $Qry;
+        echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
+            var_dump($row);
+            
             $entry = new TableView();
             $entry->setId($row['id']);
             $entry->setCol1($row[$col1]);
@@ -148,30 +150,30 @@ class DbCo
         
         return $tableList;
     }
-
+    
     function getTableViewFreed($table,$col1,$col2,$destination,$pivot,$idItem){
-         $tableList = array();
+        $tableList = array();
         
-        $Qry = "SELECT $destination.* FROM $destination WHERE  $destination.ID NOT IN (SELECT $destination FROM $pivot WHERE $table=$idItem)   AND $destination.IsDelete=0";
+        $Qry = "SELECT $destination.ID, $destination.$col1, $destination.$col2 FROM $destination WHERE  $destination.ID NOT IN (SELECT $destination FROM $pivot WHERE $table=$idItem)   AND $destination.IsDelete=0";
         //echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
-        
-        while($row = $statement->fetch(PDO::FETCH_ASSOC))
-        {
-            $entry = new TableView();
-            $entry->setId($row['ID']);
-            $entry->setCol1($row[$col1]);
-            $entry->setCol2($row[$col2]);
-            
-            
-            $tableList[] = $entry;
-        }
-        
+
+            while($row = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+
+                $entry = new TableView();
+                $entry->setId($row['ID']);
+                $entry->setCol1($row[$col1]);
+                $entry->setCol2($row[$col2]);
+                     
+                $tableList[] = $entry;
+            }
+ 
         return $tableList;
     }
-
+    
     function getTableViewAssociate($table,$col1,$col2,$destination,$pivot,$idItem){
-         $tableList = array();
+        $tableList = array();
         
         $Qry = "SELECT $destination.ID, $destination.$col1, $destination.$col2 FROM $destination JOIN $pivot ON $destination.ID=$pivot.$destination WHERE $pivot.$table = $idItem AND $destination.IsDelete=0";
         //echo $Qry;
@@ -191,5 +193,5 @@ class DbCo
         return $tableList;
     }
     
-
+    
 }

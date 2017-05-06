@@ -6,7 +6,6 @@ class TableView{
     protected $col2=null;
 
     function __construct(){
-        
     }
 
     function getId(){

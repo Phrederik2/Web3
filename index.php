@@ -31,16 +31,23 @@
                  /*margin:5px;
                 padding-bottom:5px;*/
             }
+            article{
+                display:flex;
+                flex-direction:column;
+            }
+            #gestPivot{
+                display:flex;
+                flex-direction:row;
+            }
 
         </style>
     </head>
     <body>
-    <--!test-->
     <header>
         <nav>
             <ul id="menuPrin">
-            <li><a href=index.php?menu=user&colonne1=lastname&colonne2=firstName>User</a></li>
-            <li><a href=index.php?menu=student&colonne1=lastname&colonne2=firstName>Student</a></li>
+            <li><a href=index.php?menu=user>User</a></li>
+            <li><a href=index.php?menu=student>Student</a></li>
             </ul>
         </nav>
     </header>
@@ -56,9 +63,13 @@
         <article>
              <?php
                 $controller->setForm();
-                $controller->setAssoc();
-                $controller->setFreed();
             ?>
+            <div id="gestPivot">
+                <?php
+                    $controller->setAssoc();
+                    $controller->setFreed();
+                ?>
+            </div>
         </article>
     </section>
       
