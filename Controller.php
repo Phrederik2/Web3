@@ -15,8 +15,6 @@ class Controller{
     
     function switchMenu()
     {
-        $pivot = "test";
-        echo $pivot;
         if (isset($_GET["menu"])){
             switch ($_GET["menu"]) {
                 case 'user':
@@ -91,6 +89,7 @@ function setFreed()
 }
 
 function getTableView($menu,$column1,$column2){
+    $pivot = "null";
     $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
     include("view/TableList.php");
 }

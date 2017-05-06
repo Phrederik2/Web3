@@ -1,6 +1,6 @@
 <?php
-//test
-session_start ();
+
+if (session_status() == PHP_SESSION_DISABLED) session_start ();
 /**
  * interface afin d'obliger les meme fonction dans les objects
  */
