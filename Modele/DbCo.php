@@ -10,7 +10,7 @@ class DbCo
 {
     //Paramètrage des valeur pour connexion
     private $localhost = "localhost";
-    private $user = "root";
+    private $user = "user";
     private $password = "bachelier";
     private $db = "projetintegration";
     private static $pdo;
