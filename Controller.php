@@ -25,6 +25,6 @@ class Controller{
         }else{
             $crtList = $this->dbCo->getTableViewList('user','lastName','firstName');
         }
-        include("view/TableView.php");
+        include("view/TableList.php");
     }
 }
