@@ -15,6 +15,12 @@
                $str.="$key=$value";
             }
         }
+        if ($str!=""){
+            $str="index.php?$str";
+        }
+        else {
+            $str="index.php";
+        }
         echo $str;
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
