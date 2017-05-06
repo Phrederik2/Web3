@@ -11,12 +11,12 @@ foreach($crtList as $crtEntry){
         switch ($GEToption) {
             case "assoc":
                  $tbv .= "<li><a href=".FILE."?menu=".$_GET['menu'].
-            "&id={$crtEntry->getId()}&remove=true>".$item."</a></li>";
+             "&id={$_GET["id"]}&remove={$crtEntry->getId()}>".$item."</a></li>";
                 break;
             
             case "freed":
                  $tbv .= "<li><a href=".FILE."?menu=".$_GET['menu'].
-            "&id={$crtEntry->getId()}&add=true>".$item."</a></li>";
+            "&id={$_GET["id"]}&add={$crtEntry->getId()}>".$item."</a></li>";
                 break;
             
             default:

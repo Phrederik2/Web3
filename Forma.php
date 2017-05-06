@@ -983,7 +983,7 @@ class Form {
 				$tmp->toString ();
 			}
 		}
-		$str .= '<input type="submit" name="submit" value="submit">';
+		$str .= '<input type="submit" name="submit" value="submit"></br>';
 		
 		// verifie le regex de chaque item et si il n'est pas null.
 		$this->validation ();
