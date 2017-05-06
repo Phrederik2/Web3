@@ -137,11 +137,13 @@ class DbCo
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
-    
+            //var_dump($row);
+
             $entry = new TableView();
             $entry->setId($row['id']);
             $entry->setCol1($row[$col1]);
-            $entry->setCol2($row[$col2]);   
+            $entry->setCol2($row[$col2]);
+            
             
             $tableList[] = $entry;
         }
