@@ -2,10 +2,11 @@
 
 <html lang="en">
 
+<html lang="EN">
+
     <head>
         <title></title>
         <meta charset="UTF-8">
-       
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <style type="text/css">
@@ -34,11 +35,12 @@
         </style>
     </head>
     <body>
+    <--!test-->
     <header>
         <nav>
             <ul id="menuPrin">
-            <li><a href=index.php?menu=user>User</a></li>
-            <li><a href=index.php?menu=student>Student</a></li>
+            <li><a href=index.php?menu=user&colonne1=lastname&colonne2=firstName>User</a></li>
+            <li><a href=index.php?menu=student&colonne1=lastname&colonne2=firstName>Student</a></li>
             </ul>
         </nav>
     </header>
@@ -48,13 +50,14 @@
 
             require_once("Controller.php");
             $controller = new Controller();
-           $controller->switchMenu();
+            $controller->switchMenu();
             ?>
         </aside>
         <article>
              <?php
                 $controller->setForm();
                 $controller->setAssoc();
+                $controller->setFreed();
             ?>
         </article>
     </section>

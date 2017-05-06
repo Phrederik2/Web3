@@ -149,17 +149,17 @@ class DbCo
         return $tableList;
     }
 
-    function getTableViewFreed($table,$col1,$col2){
+    function getTableViewFreed($table,$col1,$col2,$destination,$pivot,$idItem){
          $tableList = array();
         
-        $Qry = "select id,{$col1},{$col2} from {$table}";
+        $Qry = "SELECT $destination.* FROM $destination WHERE  $destination.ID NOT IN (SELECT $destination FROM $pivot WHERE $table=$idItem)   AND $destination.IsDelete=0";
         //echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
             $entry = new TableView();
-            $entry->setId($row['id']);
+            $entry->setId($row['ID']);
             $entry->setCol1($row[$col1]);
             $entry->setCol2($row[$col2]);
             
@@ -190,5 +190,6 @@ class DbCo
         
         return $tableList;
     }
+    
 
 }
