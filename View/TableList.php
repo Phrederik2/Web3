@@ -1,7 +1,7 @@
 <?php
 
 $isOptionValid=0;
-$tbv = "<nav id=\"test\"><ul>";
+$tbv = "<nav class=\"tableView\"><ul>";
 
 foreach($crtList as $crtEntry){
     $item=$crtEntry->getCol1()." ".$crtEntry->getCol2();

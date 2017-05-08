@@ -18,7 +18,6 @@ class Controller{
         if (isset($_GET["menu"])){
             switch ($_GET["menu"]) {
                 case 'user':
-                    echo "test2";
                     $this->getTableView($_GET["menu"],"lastname","firstname");
                     break;
                 case 'student':
