@@ -11,6 +11,9 @@ class Controller{
 				private static $pivot="";
 				private static $column1="";
 				private static $column2="";
+				private static $listColumn1="";
+				private static $listColumn2="";
+				private static $viewItem="";
 
     public function __construct()
     {
@@ -28,24 +31,19 @@ static function getColumn1(){return Controller::$column1;}
 function setColumn1($column1){Controller::$column1= $column1;}
 static function getColumn2(){return Controller::$column2;}
 function setColumn2($column2){Controller::$column2= $column2;}
+static function getViewItem(){return Controller::$viewItem;}
+function setViewItem($viewItem){Controller::$viewItem= $viewItem;}
+static function getListColumn1(){return Controller::$listColumn1;}
+function setListColumn1($listColumn1){Controller::$listColumn1= $listColumn1;}
+static function getListColumn2(){return Controller::$listColumn2;}
+function setListColumn2($listColumn2){Controller::$listColumn2= $listColumn2;}
 
     
     function switchMenu()
     {
         if (isset($_GET["menu"])){
-            switch ($_GET["menu"]) {
-                case 'user':
-                    $this->getTableView($_GET["menu"],"lastname","firstname");
-                    break;
-                case 'student':
-                    # code...
-                    break;
-                
-                default:
-                    # code...
-                    break;
-        }
-    }
+    				 $this->getTableView($_GET["menu"],Controller::getListColumn1(),Controller::getListColumn2());
+								}
 }
 
 function setSetting(){
@@ -55,10 +53,13 @@ switch ($_GET["menu"]) {
     
                 case 'user':
                
-            $this->setView($_GET["menu"],"manage","department","title","code");
+            $this->setView("firstname","lastname",$_GET["menu"],"manage","department","title","code","view/UserView.php");
                     break;
                 case 'student':
                     # code...
+                    break;
+																case 'professor':
+                	$this->setView("firstname","lastname",$_GET["menu"],"request","unavailability","firstday","lastday","view/ProfessorView.php");
                     break;
                 
                 default:
@@ -90,30 +91,22 @@ function checkData()
         }
 }
 
-private function setView($origin,$pivot,$destination,$column1,$column2)
+private function setView($listColumn1,$listColumn2,$origin,$pivot,$destination,$column1,$column2,$viewItem)
 {
+					Controller::setListColumn1($listColumn1);
+					Controller::setListColumn2($listColumn2);
      Controller::setOrigin($origin);
      Controller::setPivot($pivot);
      Controller::setDestination($destination);
      Controller::setColumn1($column1);
      Controller::setColumn2($column2);
+					Controller::setViewItem($viewItem);
 }
 
 function setForm(){
     if (isset($_GET["menu"])){
-        switch ($_GET["menu"]) {
-            case 'user':
-                include("view/UserView.php");
-                break;
-            case 'student':
-                # code...
-                break;
-            
-            default:
-                # code...
-                break;
-    }
-}
+      include(Controller::getViewItem());
+						}
 }
 
 function setAssoc()
