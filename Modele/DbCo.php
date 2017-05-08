@@ -191,6 +191,20 @@ class DbCo
         
         return $tableList;
     }
+
+    function removePivot($origine,$pivot,$destination,$idParent,$idChild)
+    {
+        $Qry = "DELETE FROM $pivot WHERE $origine=$idParent and $destination=$idChild";
+        //echo $Qry;
+        $statement = DbCo::$pdo->query($Qry);
+    }
+
+     function addToPivot($origine,$pivot,$destination,$idParent,$idChild)
+    {
+        $Qry = "INSERT INTO $pivot ($origine,$destination) VALUES ($idParent, $idChild)";
+        //echo $Qry;
+        $statement = DbCo::$pdo->query($Qry);
+    }
     
     
 }

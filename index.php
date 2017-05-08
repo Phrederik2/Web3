@@ -34,10 +34,20 @@
                     $controller->setForm();
                 ?>
                 <div id="gestPivot">
+                <div>
+                    
+                <h3>Item lié</h3></br>
                     <?php
                         $controller->setAssoc();
+                    ?>
+                </div>
+                <div>
+                    
+                <h3>Item non lié</h3></br>                    
+                    <?php
                         $controller->setFreed();
                     ?>
+                </div>
                 </div>
             </div>
         </article>

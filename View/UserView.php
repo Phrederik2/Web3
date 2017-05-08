@@ -1,7 +1,7 @@
 <?php
 require_once("forma.php");
 
-$formName = "user";
+$formName = Controller::getOrigin();
 $id = null;
 $menu = $_GET['menu'];
 if(isset($_GET['id'])) $id = $_GET['id'];
@@ -27,3 +27,4 @@ if($id==0){
 }
 
 echo $userForm->toString();
+echo $userForm->getLastItem()->getValue();
