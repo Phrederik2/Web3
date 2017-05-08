@@ -55,7 +55,7 @@ switch ($_GET["menu"]) {
     
                 case 'user':
                
-																$this->setView($_GET["menu"],"manage","department","title","code");
+            $this->setView($_GET["menu"],"manage","department","title","code");
                     break;
                 case 'student':
                     # code...
