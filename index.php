@@ -3,7 +3,6 @@
 <html lang="en">
 
 <html lang="EN">
-
     <head>
         <title></title>
         <meta charset="UTF-8">
@@ -13,7 +12,7 @@
     </head>
     <body>
     <header>
-        <nav>
+        <nav>      
             <ul id="menuPrin">
                 <li><a href=index.php?menu=user>User</a></li>
                 <li><a href=index.php?menu=student>Student</a></li>

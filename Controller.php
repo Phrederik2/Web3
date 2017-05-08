@@ -53,13 +53,13 @@ switch ($_GET["menu"]) {
     
                 case 'user':
                
-            $this->setView("firstname","lastname",$_GET["menu"],"manage","department","title","code","view/UserView.php");
+            $this->setView("firstname","lastname",Controller::getOrigin(),"manage","department","title","code","view/UserView.php");
                     break;
                 case 'student':
                     # code...
                     break;
 																case 'professor':
-                	$this->setView("firstname","lastname",$_GET["menu"],"request","unavailability","firstday","lastday","view/ProfessorView.php");
+                	$this->setView("firstname","lastname",Controller::getOrigin(),"request","unavailability","firstday","lastday","view/ProfessorView.php");
                     break;
                 
                 default:
