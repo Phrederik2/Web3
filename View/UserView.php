@@ -6,25 +6,25 @@ $id = null;
 $menu = $_GET['menu'];
 if(isset($_GET['id'])) $id = $_GET['id'];
 
-$userForm = new Form("User");
+$form = new Form("User");
 
-$userForm->add(new Text("LastName"));
-$userForm->add(new Text("firstName"));
-$userForm->add(new Text("Password"));
-$userForm->add(new checkBox("IsAdmin"));
+$form->add(new Text("LastName"));
+$form->add(new Text("firstName"));
+$form->add(new Text("Password"));
+$form->add(new checkBox("IsAdmin"));
 $select = new Select ( "Activation", null, null, "IsDelete" );
 $select->add ( new Option ( - 1, "Activate" ) );
 $select->add ( new Option ( 0, "Desactivate" ) );
-$userForm->add ( $select );
+$form->add ( $select );
 
 if($menu==$formName and $id != null and $id !=0){
-    $userForm->bind(DbCo::getPDO(),$formName,"ID = '$id'");
+    $form->bind(DbCo::getPDO(),$formName,"ID = '$id'");
 }
 if($id==0){
-    $userForm->setTable($formName);
-    $userForm->setPDO(DbCo::getPDO());
-    $userForm->reinit();
+    $form->setTable($formName);
+    $form->setPDO(DbCo::getPDO());
+    $form->reinit();
 }
 
-echo $userForm->toString();
-echo $userForm->getLastItem()->getValue();
+echo $form->toString();
+echo $form->getLastItem()->getValue();
