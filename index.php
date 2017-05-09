@@ -15,8 +15,10 @@
         <nav>      
             <ul id="menuPrin">
                 <li><a href=index.php?menu=user>User</a></li>
+                <li><a href=index.php?menu=department>Department</a></li>
                 <li><a href=index.php?menu=student>Student</a></li>
                 <li><a href=index.php?menu=professor>Professor</a></li>
+                <li><a href=index.php?menu=resource>resource</a></li>
             </ul>
         </nav>
     </header>

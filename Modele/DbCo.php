@@ -132,6 +132,7 @@ class DbCo
         $tableList = array();
         
         $Qry = "select id,{$col1},{$col2} from {$table}";
+        echo $Qry;
 
         $statement = DbCo::$pdo->query($Qry);
         

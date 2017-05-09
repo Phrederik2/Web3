@@ -6,12 +6,10 @@ $id = null;
 $menu = $_GET['menu'];
 if(isset($_GET['id'])) $id = $_GET['id'];
 
-$form = new Form("User");
+$form = new Form($formName);
 
-$form->add(new Text("LastName"));
-$form->add(new Text("FirstName"));
-$form->add(new Text("Password"));
-$form->add(new checkBox("IsAdmin"));
+$form->add(new Text("Title"));
+$form->add(new Text("Code"));
 $select = new Select ( "Activation", null, null, "IsDelete" );
 $select->add ( new Option ( - 1, "Activate" ) );
 $select->add ( new Option ( 0, "Desactivate" ) );
