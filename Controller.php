@@ -60,6 +60,9 @@ class Controller{
             case 'resource':
                 $this->setView("title","code","resource","dispose","local","title","code","view/ReferenceView.php");
                 break;
+            case 'sgroup':
+                $this->setView("title","code","sgroup","linksgroupstudent","student","lastName","firstName","view/ReferenceView.php");
+                break;
             case 'student':
                 # code...
                 break;

@@ -18,7 +18,8 @@
                 <li><a href=index.php?menu=department>Department</a></li>
                 <li><a href=index.php?menu=student>Student</a></li>
                 <li><a href=index.php?menu=professor>Professor</a></li>
-                <li><a href=index.php?menu=resource>resource</a></li>
+                <li><a href=index.php?menu=resource>Resource</a></li>
+                <li><a href=index.php?menu=sgroup>Group</a></li>
             </ul>
         </nav>
     </header>
