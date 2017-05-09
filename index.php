@@ -28,13 +28,15 @@
             <?php
                 require_once("Controller.php");
                 $controller = new Controller();
+                $controller->setForm();
                 $controller->switchMenu();
             ?>
         </aside>
         <article>
             <div id="form">
                 <?php
-                    $controller->setForm();
+                    
+                    $controller->getForm();
                 ?>
                 <div id="gestPivot">
                 <div>

@@ -113,7 +113,7 @@ class DbCo
     function getTableViewList($table,$col1,$col2){
         $tableList = array();
         
-        $Qry = "select id,{$col1},{$col2} from {$table}";
+        $Qry = "select id,{$col1},{$col2} from {$table} WHERE IsDelete=0";
         echo $Qry;
 
         $statement = DbCo::$pdo->query($Qry);

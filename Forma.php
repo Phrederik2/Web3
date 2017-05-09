@@ -712,6 +712,7 @@ class Form {
 	private $isPOSTExist = false;
 	private $showTitle = true;
 	private $styleOfLabeling = "legend";
+	private $toString = "";
 	
 	/**
 	 * Constructeur de la 
@@ -961,7 +962,7 @@ class Form {
 	 * 
 	 * @return str
 	 */
-	function toString() {
+	function initialize() {
 		$this->bindValue ();
 		$str = $this->showFieldset ();
 		$str .= $this->showTitle ();
@@ -995,8 +996,14 @@ class Form {
 		$str .= "</Form>{$this->readComment($this->listError)}{$this->readComment($this->listRemark)}";
 		if ($this->getIsFieldSet () == 1)
 			$str .= "</fieldset>";
-		return $str;
+		$this->toString = $str;
 	}
+
+function toString()
+{
+	return $this->toString;
+}
+
 	
 	/**
 	 * verifie si les valeurs sont bien remplie (non null)

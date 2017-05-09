@@ -14,6 +14,7 @@ class Controller{
     private static $listColumn1="";
     private static $listColumn2="";
     private static $viewItem="";
+    private static $form=null;
     
     public function __construct()
     {
@@ -37,7 +38,7 @@ class Controller{
     function setListColumn1($listColumn1){Controller::$listColumn1= $listColumn1;}
     static function getListColumn2(){return Controller::$listColumn2;}
     function setListColumn2($listColumn2){Controller::$listColumn2= $listColumn2;}
-    
+    static function setForma($forma){Controller::$form=$forma;}
     
     function switchMenu()
     {
@@ -114,6 +115,14 @@ private function setView($listColumn1,$listColumn2,$origin,$pivot,$destination,$
 function setForm(){
     if (isset($_GET["menu"])){
         include(Controller::getViewItem());
+        
+    }
+}
+
+function getForm()
+{
+    if(Controller::$form!=null){
+        echo Controller::$form->toString();
     }
 }
 

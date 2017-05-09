@@ -17,14 +17,22 @@ $select->add ( new Option ( - 1, "Activate" ) );
 $select->add ( new Option ( 0, "Desactivate" ) );
 $form->add ( $select );
 
+$form->setAutorizeEmpty(true);
+
 if($menu==$formName and $id != null and $id !=0){
     $form->bind(DbCo::getPDO(),$formName,"ID = '$id'");
 }
 if($id==0){
+    
+    if (isset ( $_POST ) == false or count ( $_POST ) == 0){
+        $form->reinit ();
+    }
+    
     $form->setTable($formName);
     $form->setPDO(DbCo::getPDO());
-    $form->reinit();
+    $select->setValue(0);
 }
 
-echo $form->toString();
-echo $form->getLastItem()->getValue();
+$form->initialize();
+
+Controller::setForma($form);

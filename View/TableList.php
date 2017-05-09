@@ -8,7 +8,7 @@ if ($GEToption==""){
 }
 
 foreach($crtList as $crtEntry){
-    $item=$crtEntry->getCol1()." ".$crtEntry->getCol2();
+    $item=$crtEntry->getCol1()." - ".$crtEntry->getCol2();
 
     if(isset($GEToption)){
         
