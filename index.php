@@ -16,10 +16,10 @@
             <ul id="menuPrin">
                 <li><a href=index.php?menu=user>User</a></li>
                 <li><a href=index.php?menu=department>Department</a></li>
-                <li><a href=index.php?menu=student>Student</a></li>
+                <!--<li><a href=index.php?menu=student>Student</a></li>
                 <li><a href=index.php?menu=professor>Professor</a></li>
                 <li><a href=index.php?menu=resource>Resource</a></li>
-                <li><a href=index.php?menu=sgroup>Group</a></li>
+                <li><a href=index.php?menu=sgroup>Group</a></li>-->
             </ul>
         </nav>
     </header>
