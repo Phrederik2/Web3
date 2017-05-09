@@ -11,8 +11,8 @@ $form = new Form($formName);
 $form->add(new Text("Title"));
 $form->add(new Text("Code"));
 $select = new Select ( "Activation", null, null, "IsDelete" );
-$select->add ( new Option ( - 1, "Activate" ) );
-$select->add ( new Option ( 0, "Desactivate" ) );
+$select->add ( new Option ( 0, "Activate" ) );
+$select->add ( new Option ( 1, "Desactivate" ) );
 $form->add ( $select );
 
 $form->setAutorizeEmpty(true);

@@ -13,8 +13,8 @@ $form->add(new Text("FirstName"));
 $form->add(new Text("Password"));
 $form->add(new checkBox("IsAdmin"));
 $select = new Select ( "Activation", null, null, "IsDelete" );
-$select->add ( new Option ( - 1, "Activate" ) );
-$select->add ( new Option ( 0, "Desactivate" ) );
+$select->add ( new Option ( 0, "Activate" ) );
+$select->add ( new Option ( 1, "Desactivate" ) );
 $form->add ( $select );
 
 $form->setAutorizeEmpty(true);
