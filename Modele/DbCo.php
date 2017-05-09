@@ -78,15 +78,6 @@ class DbCo
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
             $user = new User($row["ID"],$row["ISADMIN"],$row["ISCHANGE"],$row["ISDELETE"],$row["LASTNAME"],$row["FIRSTNAME"],$row["PASSWORD"]);
-            /*$user->setId($row['idUser']);
-            //$user->setLogin($row['login']);
-            $user->setlastName($row['lastName']);
-            $user->setfirstName($row['firstName']);
-            $user->setPassword($row['password']);
-            $user->setIsAdmin($row['isAdmin']);
-            $user->setIsChange($row['isChange']);
-            $user->setDeleted($row['isDeleted']);*/
-            
             
             $userList[] = $user;
         }
@@ -114,18 +105,9 @@ class DbCo
     * @return void
     */
     function editUser($user)
-    {
-        // try
-        // {
+    { 
         $editUserQry = "update sauser set login='{$user->getlogin()}',level={$user->getLevel()},deleted={$user->getDeleted()} where idUser={$user->getIdUser()}";
         $statement = DbCo::$pdo->query($editUserQry);
-        //}
-        // catch(Exception $e)
-        // {
-        // echo('Erreur : '.$e->getMessage());
-        //return;
-        //}
-        //var_dump($editUserQry);
     }
     
     function getTableViewList($table,$col1,$col2){
