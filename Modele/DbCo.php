@@ -52,7 +52,7 @@ class DbCo
     * @param [type] $password
     * @return false or $user
     */
-    static function getUser($firstName,$lastName,$password)
+    static function getUser($lastName,$firstName,$password)
     {
         $Qry = "SELECT id,firstname,lastname,isadmin FROM user WHERE firstname='{$firstName}' AND lastname='{$lastName}' AND password = '{$password}' AND isdelete=0";
         $statement = DbCo::getPDO()->query($Qry);
@@ -60,13 +60,14 @@ class DbCo
         
         if($row == false)
         {
-            return false;
+            return null;
         }
         
         else
         {
-                      
+              var_dump($row);        
             $user = new User($row['id'],$row['firstname'],$row['lastname'],$row['isadmin']);
+            var_dump($user);
             return $user;
         }
     }

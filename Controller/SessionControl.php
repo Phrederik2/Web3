@@ -7,7 +7,7 @@ require_once("Modele/User.php");
 */
 class Session
 {
-    private static $user;
+    public static $user;
     
     function __construct()
     {
@@ -15,17 +15,23 @@ class Session
         
         
         if (isset($_SESSION['login'])) {
-            Session::$user=$_SESSION['login'];
+            Session::$user=unserialize($_SESSION['login']);
         }
-        else if(isset($_POST['Login'])){
+        if(isset($_POST['Login'])){
                 
                 Session::$user = DbCo::getUser($_POST['Login::lastName'], $_POST['Login::firstName'],$_POST['Login::pass']);
-
-                $_SESSION['login'] = Session::$user;
+                if (Session::$user !=null){
+                    $_SESSION['login'] = serialize(Session::$user);
+                }
+                else {
+                    unset($_SESSION['login']);
+                }
             }
-        else{
+
+        if(Session::$user == null){
             include("View/LoginView.php");
         }
     }
+
 
 }
