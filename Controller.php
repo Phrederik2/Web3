@@ -1,11 +1,15 @@
 <?php
 
+//Inclusion des dépendances.
 require_once("Modele/DbCo.php");
+//Defini le nom du fichier qui execute le script afin de cr�e les URL
 define ( "FILE", basename ( $_SERVER ['SCRIPT_FILENAME'] ) );
-
+/**
+ * Controller principale permet la gestion des différent éléments du site.
+ */
 class Controller{
     
-    private $dbCo;//Création d'une istance de la classe de connection qui sert à appelé les différentes query
+    private $dbCo;
     private static $origin="";
     private static $destination="";
     private static $pivot="";
@@ -13,10 +17,13 @@ class Controller{
     private static $column2="";
     private static $listColumn1="";
     private static $listColumn2="";
-    private static $viewItem="";
+    private static $viewPath="";
     private static $form=null;
     private static $menu = Array();
     
+    /**
+     * Constructeur de la classe, instancie une connection vers la dataBase et lance le réglage des options.
+     */
     public function __construct()
     {
         $this->dbCo = new DbCo();
@@ -24,6 +31,7 @@ class Controller{
         $this->setSetting();
     }
     
+    // Accèsseurs
     private static function getOrigin(){return Controller::$origin;}
     private function setOrigin($origin){Controller::$origin= $origin;}
     private static function getDestination(){return Controller::$destination;}
@@ -34,14 +42,20 @@ class Controller{
     private function setColumn1($column1){Controller::$column1= $column1;}
     private static function getColumn2(){return Controller::$column2;}
     private function setColumn2($column2){Controller::$column2= $column2;}
-    private static function getViewItem(){return Controller::$viewItem;}
-    private function setViewItem($viewItem){Controller::$viewItem= $viewItem;}
+    private static function getViewPath(){return Controller::$viewPath;}
+    private function setViewPath($viewPath){Controller::$viewPath= $viewPath;}
     private static function getListColumn1(){return Controller::$listColumn1;}
     private function setListColumn1($listColumn1){Controller::$listColumn1= $listColumn1;}
     private static function getListColumn2(){return Controller::$listColumn2;}
     private function setListColumn2($listColumn2){Controller::$listColumn2= $listColumn2;}
     private static function setForma($forma){Controller::$form=$forma;}
     
+    /**
+     * Vérifie existence d'un Get
+     * Génère la tableView du formlaire
+     *
+     * @return void
+     */
     public function switchMenu()
     {
         if (isset($_GET["menu"])){
@@ -49,17 +63,32 @@ class Controller{
         }
     }
 
+    /**
+     * Remplissage de l'array menu pour définir les liens du menu principal
+     *
+     * @return void
+     */
     private function setMenu()
     {
        Controller::$menu["User"]="user"; 
        Controller::$menu["Department"]="department";
     }
 
+    /**
+     * Appel de la vue MenuView
+     *
+     * @return void
+     */
     public function getMenu()
     {
         include("View/MenuView.php");
     }
     
+    /**
+     * Envoie des paramètre à setView en fonction du $_GET['menu']
+     *
+     * @return void
+     */
     private function setSetting(){
         if (session_status()==PHP_SESSION_DISABLED)session_start();
         if (!isset($_GET["menu"]))return;
@@ -91,6 +120,12 @@ class Controller{
     $this->checkData();
 }
 
+/**
+ * Gestion de la table pivot d'un formulaire, retire ou ajoute une entrée des item lié à l'objet courant
+ * si il y a un GET [remove/add].
+ *
+ * @return void
+ */
 private function checkData()
 {
     
@@ -113,7 +148,20 @@ private function checkData()
     }
 }
 
-private function setView($listColumn1,$listColumn2,$origin,$pivot,$destination,$column1,$column2,$viewItem)
+/**
+ * Réglage des différents attibuts nécessaire à la construction des vue en fonction des paramètre envoyé depuis setSettings
+ *
+ * @param [String] $listColumn1
+ * @param [String] $listColumn2
+ * @param [String] $origin
+ * @param [String] $pivot
+ * @param [String] $destination
+ * @param [String] $column1
+ * @param [String] $column2
+ * @param [String] $viewPath
+ * @return void
+ */
+private function setView($listColumn1,$listColumn2,$origin,$pivot,$destination,$column1,$column2,$viewPath)
 {
     Controller::setListColumn1($listColumn1);
     Controller::setListColumn2($listColumn2);
@@ -122,16 +170,26 @@ private function setView($listColumn1,$listColumn2,$origin,$pivot,$destination,$
     Controller::setDestination($destination);
     Controller::setColumn1($column1);
     Controller::setColumn2($column2);
-    Controller::setViewItem($viewItem);
+    Controller::setviewPath($viewPath);
 }
 
+/**
+ * Appel le formulaire via les setting passé dans setSettings
+ *
+ * @return void
+ */
 public function setForm(){
     if (isset($_GET["menu"])){
-        include(Controller::getViewItem());
+        include(Controller::getviewPath());
         
     }
 }
 
+/**
+ * Affichage du formualire pré-défini dans setForm
+ *
+ * @return void
+ */
 public function getForm()
 {
     if(Controller::$form!=null){
@@ -139,6 +197,11 @@ public function getForm()
     }
 }
 
+/**
+ * Gestion table pivot reprenant les élément qui sont lié entre deux tables
+ *
+ * @return void
+ */
 public function setAssoc()
 {
     if (isset($_GET["menu"]) and isset($_GET["id"])){
@@ -153,6 +216,11 @@ public function setAssoc()
     }
 }
 
+/**
+ * Gestion table pivot reprenant les élément qui ne sont pas lié aux deux tables.
+ *
+ * @return void
+ */
 public function setFreed()
 {
     if (isset($_GET["menu"]) and isset($_GET["id"])){
@@ -167,18 +235,48 @@ public function setFreed()
     }
 }
 
+/**
+ * Affichage des entrée d'une table en rapport avec le formulaire appelé
+ *
+ * @param String $menu
+ * @param String $column1
+ * @param String $column2
+ * @return void
+ */
 public function getTableView(String $menu,String $column1,String $column2){
     $GEToption = "";
     $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
     include("view/TableList.php");
 }
 
+/**
+ * Affichage des élément lié à une table
+ *
+ * @param String $menu
+ * @param String $column1
+ * @param String $column2
+ * @param String $destination
+ * @param String $pivot
+ * @param [type] $idItem
+ * @return void
+ */
 public function getTableViewAssoc(String $menu,String $column1,String $column2,String $destination,String $pivot,$idItem){
     $GEToption = "assoc";
     $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
 }
 
+/**
+ * Affichage des élément existant mais non lié à la table actuelle
+ *
+ * @param String $menu
+ * @param String $column1
+ * @param String $column2
+ * @param String $destination
+ * @param String $pivot
+ * @param [type] $idItem
+ * @return void
+ */
 public function getTableViewFreed(String $menu,String $column1,String $column2,String $destination,String $pivot,$idItem){
     $GEToption = "freed";
     $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
