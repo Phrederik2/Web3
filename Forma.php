@@ -825,17 +825,12 @@ class Form {
 	 * @return void
 	 */
 	function setIsPOSTExist() {
-		if (isset($_POST['submit']) AND $_POST['submit']== $this->titleChild)
+		if (isset($_POST[$this->getTitleChild()]) AND $_POST[$this->getTitleChild()]== 'submit')
 		{
+			$this->isPOSTExist = true;
 			return true;
 		}
-		return false;
-		/*foreach ( $_POST as $key => $value ) {
-			if (strstr ( $key, $this->titleChild ) == true) {
-				$this->isPOSTExist = true;
-				return;
-			}
-		}*/
+		return false;	
 	}
 
 	function getIsPOSTExist() {
