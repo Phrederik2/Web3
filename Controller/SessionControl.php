@@ -17,14 +17,14 @@ class Session
         if (isset($_SESSION['login'])) {
             Session::$user=$_SESSION['login'];
         }
-        else {
-            include("View/LoginView.php");
-            if(isset($_POST['Login'])){
+        else if(isset($_POST['Login'])){
                 
                 Session::$user = DbCo::getUser($_POST['Login::lastName'], $_POST['Login::firstName'],$_POST['Login::pass']);
 
                 $_SESSION['login'] = Session::$user;
             }
+        else{
+            include("View/LoginView.php");
         }
     }
 }
