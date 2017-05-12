@@ -21,6 +21,9 @@
         <LINK rel="stylesheet" type="text/css" href="projInt.css">
     </head>
     <body>
+    <?php
+        $controller->getConnectedUser();
+    ?>
     <header>
         <nav>      
              <?php

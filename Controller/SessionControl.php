@@ -27,4 +27,5 @@ class Session
             include("View/LoginView.php");
         }
     }
+
 }

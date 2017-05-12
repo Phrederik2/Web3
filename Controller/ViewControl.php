@@ -283,4 +283,8 @@ public function getTableViewFreed(String $menu,String $column1,String $column2,S
     $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
 }
+
+function getConnectedUser(){
+    include("View/ConnexInfo.php");
+}
 }
