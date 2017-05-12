@@ -4,6 +4,11 @@
 
 <html lang="EN">
     <head>
+            <?php
+                require_once("Controller.php");
+                $controller = new Controller();
+                $controller->setForm();
+            ?>
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,22 +18,14 @@
     <body>
     <header>
         <nav>      
-            <ul id="menuPrin">
-                <li><a href=index.php?menu=user>User</a></li>
-                <li><a href=index.php?menu=department>Department</a></li>
-                <!--<li><a href=index.php?menu=student>Student</a></li>
-                <li><a href=index.php?menu=professor>Professor</a></li>
-                <li><a href=index.php?menu=resource>Resource</a></li>
-                <li><a href=index.php?menu=sgroup>Group</a></li>-->
-            </ul>
+             <?php
+               $controller->getMenu();
+            ?>
         </nav>
     </header>
     <section>
         <aside>
             <?php
-                require_once("Controller.php");
-                $controller = new Controller();
-                $controller->setForm();
                 $controller->switchMenu();
             ?>
         </aside>

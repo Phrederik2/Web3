@@ -7,7 +7,6 @@ $menu = $_GET['menu'];
 if(isset($_GET['id'])) $id = $_GET['id'];
 
 $form = new Form("User");
-
 $form->add(new Text("LastName"));
 $form->add(new Text("FirstName"));
 $form->add(new Text("Password"));

@@ -15,41 +15,54 @@ class Controller{
     private static $listColumn2="";
     private static $viewItem="";
     private static $form=null;
+    private static $menu = Array();
     
     public function __construct()
     {
         $this->dbCo = new DbCo();
+        $this->setMenu();
         $this->setSetting();
     }
     
-    static function getOrigin(){return Controller::$origin;}
-    function setOrigin($origin){Controller::$origin= $origin;}
-    static function getDestination(){return Controller::$destination;}
-    function setDestination($destination){Controller::$destination= $destination;}
-    static function getPivot(){return Controller::$pivot;}
-    function setPivot($pivot){Controller::$pivot= $pivot;}
-    static function getColumn1(){return Controller::$column1;}
-    function setColumn1($column1){Controller::$column1= $column1;}
-    static function getColumn2(){return Controller::$column2;}
-    function setColumn2($column2){Controller::$column2= $column2;}
-    static function getViewItem(){return Controller::$viewItem;}
-    function setViewItem($viewItem){Controller::$viewItem= $viewItem;}
-    static function getListColumn1(){return Controller::$listColumn1;}
-    function setListColumn1($listColumn1){Controller::$listColumn1= $listColumn1;}
-    static function getListColumn2(){return Controller::$listColumn2;}
-    function setListColumn2($listColumn2){Controller::$listColumn2= $listColumn2;}
-    static function setForma($forma){Controller::$form=$forma;}
+    private static function getOrigin(){return Controller::$origin;}
+    private function setOrigin($origin){Controller::$origin= $origin;}
+    private static function getDestination(){return Controller::$destination;}
+    private function setDestination($destination){Controller::$destination= $destination;}
+    private static function getPivot(){return Controller::$pivot;}
+    private function setPivot($pivot){Controller::$pivot= $pivot;}
+    private static function getColumn1(){return Controller::$column1;}
+    private function setColumn1($column1){Controller::$column1= $column1;}
+    private static function getColumn2(){return Controller::$column2;}
+    private function setColumn2($column2){Controller::$column2= $column2;}
+    private static function getViewItem(){return Controller::$viewItem;}
+    private function setViewItem($viewItem){Controller::$viewItem= $viewItem;}
+    private static function getListColumn1(){return Controller::$listColumn1;}
+    private function setListColumn1($listColumn1){Controller::$listColumn1= $listColumn1;}
+    private static function getListColumn2(){return Controller::$listColumn2;}
+    private function setListColumn2($listColumn2){Controller::$listColumn2= $listColumn2;}
+    private static function setForma($forma){Controller::$form=$forma;}
     
-    function switchMenu()
+    public function switchMenu()
     {
         if (isset($_GET["menu"])){
             $this->getTableView($_GET["menu"],Controller::getListColumn1(),Controller::getListColumn2());
         }
     }
+
+    private function setMenu()
+    {
+       Controller::$menu["User"]="user"; 
+       Controller::$menu["Department"]="department";
+    }
+
+    public function getMenu()
+    {
+        include("View/MenuView.php");
+    }
     
-    function setSetting(){
+    private function setSetting(){
         if (session_status()==PHP_SESSION_DISABLED)session_start();
-        
+        if (!isset($_GET["menu"]))return;
         switch ($_GET["menu"]) {
             
             case 'user':
@@ -78,7 +91,7 @@ class Controller{
     $this->checkData();
 }
 
-function checkData()
+private function checkData()
 {
     
     if(isset($_GET['remove']) and Controller::getOrigin()== $_GET["menu"]){
@@ -112,21 +125,21 @@ private function setView($listColumn1,$listColumn2,$origin,$pivot,$destination,$
     Controller::setViewItem($viewItem);
 }
 
-function setForm(){
+public function setForm(){
     if (isset($_GET["menu"])){
         include(Controller::getViewItem());
         
     }
 }
 
-function getForm()
+public function getForm()
 {
     if(Controller::$form!=null){
         echo Controller::$form->toString();
     }
 }
 
-function setAssoc()
+public function setAssoc()
 {
     if (isset($_GET["menu"]) and isset($_GET["id"])){
         
@@ -140,7 +153,7 @@ function setAssoc()
     }
 }
 
-function setFreed()
+public function setFreed()
 {
     if (isset($_GET["menu"]) and isset($_GET["id"])){
         
@@ -154,19 +167,19 @@ function setFreed()
     }
 }
 
-function getTableView($menu,$column1,$column2){
+public function getTableView(String $menu,String $column1,String $column2){
     $GEToption = "";
     $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
     include("view/TableList.php");
 }
 
-function getTableViewAssoc($menu,$column1,$column2,$destination,$pivot,$idItem){
+public function getTableViewAssoc(String $menu,String $column1,String $column2,String $destination,String $pivot,$idItem){
     $GEToption = "assoc";
     $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
 }
 
-function getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem){
+public function getTableViewFreed(String $menu,String $column1,String $column2,String $destination,String $pivot,$idItem){
     $GEToption = "freed";
     $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
