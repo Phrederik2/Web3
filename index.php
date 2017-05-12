@@ -5,7 +5,6 @@
 
 <html lang="en">
 
-<html lang="EN">
     <head>
             <?php
                 require_once("Controller/ViewControl.php");
