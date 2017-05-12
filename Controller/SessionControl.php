@@ -12,18 +12,18 @@ class Session
     function __construct()
     {
         if (session_status()==PHP_SESSION_DISABLED)session_start();
+        //var_dump($_SESSION);
         
         if (isset($_SESSION['login'])) {
             Session::$user=$_SESSION['login'];
         }
         else {
             include("View/LoginView.php");
-            if(isset($_POST)){
+            if(isset($_POST['Login'])){
                 
-                Session::$user = DbCo::getUser($_POST['login::LastName'], $_POST['login::firstName'],$_POST['login::password']);
+                Session::$user = DbCo::getUser($_POST['Login::lastName'], $_POST['Login::firstName'],$_POST['Login::pass']);
 
-                $_SESSION['lastName'] = $user->getLastName();
-                $_SESSION['firstName'] = $user->getFirstName();
+                $_SESSION['login'] = Session::$user;
             }
         }
     }
