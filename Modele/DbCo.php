@@ -39,10 +39,9 @@ class DbCo
     * @param [type] $password
     * @return false or $user
     */
-    function getUser($login,$password)
+    function getUser($firstName,$lastName,$password)
     {
-        $user = new User();
-        $getUserQry = "select * from sauser where login='{$login}' and password = '{$password}' and deleted=0";
+        $getUserQry = "SELECT id,firstname,lastname,isadmin FROM user WHERE firstname='{$firstName}' AND lastname='{$lastName}' AND password = '{$password}' AND deleted=0";
         $statement = DbCo::$pdo->query($getUserQry);
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         
@@ -53,63 +52,13 @@ class DbCo
         
         else
         {
-            $user->setIdUser($row['idUser']);
-            $user->setLogin($row['login']);
-            //$user->setPassword($row['password']);
-            $user->setLevel($row['level']);
-            //$user->
-            
+                      
+            $user = new User($row['id'],$row['firstname'],$row['lastname'],$row['isadmin']);
+            $user->_toString();
             return $user;
         }
     }
-    
-    /**
-    * Retourne la liste complète des utilisateur inscrit
-    *
-    * @return tableau d'objet $user'
-    */
-    function getUserList()
-    {
-        $userList = array();
-        
-        $getUserQry = "select * from user";
-        $statement = DbCo::$pdo->query($getUserQry);
-        
-        while($row = $statement->fetch(PDO::FETCH_ASSOC))
-        {
-            $user = new User($row["ID"],$row["ISADMIN"],$row["ISCHANGE"],$row["ISDELETE"],$row["LASTNAME"],$row["FIRSTNAME"],$row["PASSWORD"]);
-            
-            $userList[] = $user;
-        }
-        
-        return $userList;
-    }
-    
-    /**
-    * Ajout d'utlisateur dans la db'
-    *
-    * @param [type] $user
-    * @return void
-    */
-    function addUser($user)
-    {
-        $addUserQry = "insert into sauser values (null,'{$user->getlogin()}','{$user->getPassword()}',0,0)";
-        $statement = DbCo::$pdo->query($addUserQry);
-        var_dump($addUserQry);
-    }
-    
-    /**
-    * Modification utilisateur dans la db
-    *
-    * @param [type] $user
-    * @return void
-    */
-    function editUser($user)
-    { 
-        $editUserQry = "update sauser set login='{$user->getlogin()}',level={$user->getLevel()},deleted={$user->getDeleted()} where idUser={$user->getIdUser()}";
-        $statement = DbCo::$pdo->query($editUserQry);
-    }
-    
+  
     function getTableViewList($table,$col1,$col2){
         $tableList = array();
         

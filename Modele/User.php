@@ -4,39 +4,21 @@ require_once("Modele/Primary.php");
 
 class User extends Primary{
 
-    private $lastName = "";
     private $firstName = "";
-    private $password = "";
+    private $lastName = "";
 
-    function __construct($id,$isAdmin,$isChange,$isDelete,$lastName, $firstName, $password){
-        parent::__construct($id,$isAdmin,$isChange,$isDelete);
-        $this->setLastName($lastName);
+    function __construct($id,$firstName,$lastName,$isAdmin){
+        parent::__construct($id,$isAdmin);
         $this->setFirstName($firstName);
-        $this->setPasswaord($password);
+        $this->setLastName($lastName);
     }
 
-    function getLastName(){
-        return $this->lastName;        
-    }
+    function getFristName(){return $this->fristName;}
+    function setFristName($fristName){$this->fristName= $fristName;}
+    function getLastName(){return $this->lastName;}
+    function setLastName($lastName){$this->lastName= $lastName;}
+    function getIsAdmin(){return $this->isAdmin;}
+    function setIsAdmin($isAdmin){$this->isAdmin= $isAdmin;}
 
-    function getFirstName(){
-        return $this->firstName;       
-    }
-
-    function getPasswaord(){
-        return $this->password;
-    }
-
-
-    function setLastName($lastName){
-        $this->lastName = $lastName;
-    }
-
-    function setFirstName($firstName){
-        $this->firstName = $firstName;
-    }
-
-    function setPasswaord($password){
-        $this->password = $password;
-    }
+    
 }
