@@ -9,18 +9,28 @@ require_once("Modele/TableView.php");
 class DbCo
 {
     //Paramètrage des valeur pour connexion
-    private $localhost = "localhost";
-    private $user = "user";
-    private $password = "bachelier";
-    private $db = "projetintegration";
-    private static $pdo;
+    private static $localhost = "localhost";
+    private static $user = "user";
+    private static $password = "bachelier";
+    private static $db = "projetintegration";
+    public static $pdo=null;
     
     public function __construct()
     {
+       DbCo::init();
+    }
+
+    static function init()
+    {
+        DbCo::$localhost="localhost";
+        DbCo::$user="user";
+        DbCo::$password="bachelier";
+        DbCo::$db="projetintegration";
+        if(DbCo::$pdo==null)
         try
         {
             //Utilisation d'une connexion pdo
-            DbCo::$pdo = new PDO("mysql:host={$this->localhost};dbname=".$this->db,$this->user,$this->password);
+            DbCo::$pdo = new PDO("mysql:host=".DbCo::$localhost.";dbname=".DbCo::$db,DbCo::$user,DbCo::$password);
         }
         catch(Exception $e)
         {
@@ -29,6 +39,9 @@ class DbCo
     }
     
     public static function getPDO(){
+        if (DbCo::$pdo==null) {
+            DbCo::init();
+        }
         return DbCo::$pdo;
     }
     
@@ -39,10 +52,10 @@ class DbCo
     * @param [type] $password
     * @return false or $user
     */
-    function getUser($firstName,$lastName,$password)
+    static function getUser($firstName,$lastName,$password)
     {
-        $getUserQry = "SELECT id,firstname,lastname,isadmin FROM user WHERE firstname='{$firstName}' AND lastname='{$lastName}' AND password = '{$password}' AND deleted=0";
-        $statement = DbCo::$pdo->query($getUserQry);
+        $Qry = "SELECT id,firstname,lastname,isadmin FROM user WHERE firstname='{$firstName}' AND lastname='{$lastName}' AND password = '{$password}' AND isdelete=0";
+        $statement = DbCo::getPDO()->query($Qry);
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         
         if($row == false)
@@ -54,7 +67,6 @@ class DbCo
         {
                       
             $user = new User($row['id'],$row['firstname'],$row['lastname'],$row['isadmin']);
-            $user->_toString();
             return $user;
         }
     }

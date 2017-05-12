@@ -5,7 +5,9 @@
 <html lang="EN">
     <head>
             <?php
-                require_once("Controller.php");
+                require_once("Controller/ViewControl.php");
+                require_once("Controller/SessionControl.php");
+                $session = new Session();
                 $controller = new Controller();
                 $controller->setForm();
             ?>

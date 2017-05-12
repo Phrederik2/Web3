@@ -13,8 +13,8 @@ class User extends Primary{
         $this->setLastName($lastName);
     }
 
-    function getFristName(){return $this->fristName;}
-    function setFristName($fristName){$this->fristName= $fristName;}
+   function getFirstName(){return $this->firstName;}
+    function setFirstName($firstName){$this->firstName= $firstName;}
     function getLastName(){return $this->lastName;}
     function setLastName($lastName){$this->lastName= $lastName;}
     function getIsAdmin(){return $this->isAdmin;}

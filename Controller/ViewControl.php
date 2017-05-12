@@ -151,17 +151,17 @@ private function checkData()
 /**
  * Réglage des différents attibuts nécessaire à la construction des vue en fonction des paramètre envoyé depuis setSettings
  *
- * @param [String] $listColumn1
- * @param [String] $listColumn2
- * @param [String] $origin
- * @param [String] $pivot
- * @param [String] $destination
- * @param [String] $column1
- * @param [String] $column2
- * @param [String] $viewPath
+ * @param String $listColumn1
+ * @param String $listColumn2
+ * @param String $origin
+ * @param String $pivot
+ * @param String $destination
+ * @param String $column1
+ * @param String $column2
+ * @param String $viewPath
  * @return void
  */
-private function setView($listColumn1,$listColumn2,$origin,$pivot,$destination,$column1,$column2,$viewPath)
+private function setView(string $listColumn1,string $listColumn2,string $origin,string $pivot,string $destination,string $column1,string $column2,string $viewPath)
 {
     Controller::setListColumn1($listColumn1);
     Controller::setListColumn2($listColumn2);
@@ -186,7 +186,7 @@ public function setForm(){
 }
 
 /**
- * Affichage du formualire pré-défini dans setForm
+ * Affichage du formulaire pré-défini dans setForm
  *
  * @return void
  */
@@ -257,10 +257,10 @@ public function getTableView(String $menu,String $column1,String $column2){
  * @param String $column2
  * @param String $destination
  * @param String $pivot
- * @param [type] $idItem
+ * @param int $idItem
  * @return void
  */
-public function getTableViewAssoc(String $menu,String $column1,String $column2,String $destination,String $pivot,$idItem){
+public function getTableViewAssoc(String $menu,String $column1,String $column2,String $destination,String $pivot, int $idItem){
     $GEToption = "assoc";
     $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
@@ -274,10 +274,10 @@ public function getTableViewAssoc(String $menu,String $column1,String $column2,S
  * @param String $column2
  * @param String $destination
  * @param String $pivot
- * @param [type] $idItem
+ * @param int $idItem
  * @return void
  */
-public function getTableViewFreed(String $menu,String $column1,String $column2,String $destination,String $pivot,$idItem){
+public function getTableViewFreed(String $menu,String $column1,String $column2,String $destination,String $pivot,int $idItem){
     $GEToption = "freed";
     $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
     include("view/TableList.php");
