@@ -58,7 +58,7 @@ class Controller{
      */
     public function switchMenu()
     {
-        if (isset($_GET["menu"])){
+        if (isset($_GET["menu"]) and isset($_SESSION['login'])){
             $this->getTableView($_GET["menu"],Controller::getListColumn1(),Controller::getListColumn2());
         }
     }
@@ -81,7 +81,8 @@ class Controller{
      */
     public function getMenu()
     {
-        include("View/MenuView.php");
+        if(isset($_SESSION['login']))
+            include("View/MenuView.php");
     }
     
     /**
@@ -192,7 +193,7 @@ public function setForm(){
  */
 public function getForm()
 {
-    if(Controller::$form!=null){
+    if(Controller::$form!=null and isset($_SESSION['login'])){
         echo Controller::$form->toString();
     }
 }
@@ -204,7 +205,7 @@ public function getForm()
  */
 public function setAssoc()
 {
-    if (isset($_GET["menu"]) and isset($_GET["id"])){
+    if (isset($_GET["menu"]) and isset($_GET["id"]) and isset($_SESSION['login'])){
         
         $this->getTableViewAssoc(
         Controller::getOrigin(),
@@ -223,7 +224,7 @@ public function setAssoc()
  */
 public function setFreed()
 {
-    if (isset($_GET["menu"]) and isset($_GET["id"])){
+    if (isset($_GET["menu"]) and isset($_GET["id"]) and isset($_SESSION['login'])){
         
         $this->getTableViewFreed(
         Controller::getOrigin(),
