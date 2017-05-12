@@ -5,7 +5,7 @@ class Primary{
     protected $isChange = false;
     protected $isDelete = false;
 
-    function __construct($id,$isAdmin,$isChange,$isDelete){
+    function __construct($id,$isAdmin=false,$isChange=false,$isDelete=false){
         $this->setId($id);
         $this->setIsAdmin($isAdmin);
         $this->setIsChange($isChange);
