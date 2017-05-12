@@ -28,7 +28,7 @@ class DbCo
         }
     }
     
-    static function getPDO(){
+    public static function getPDO(){
         return DbCo::$pdo;
     }
     

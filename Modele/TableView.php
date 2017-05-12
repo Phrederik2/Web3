@@ -1,7 +1,8 @@
 <?php
-class TableView{
+require_once("Modele/Primary.php");
 
-    protected $id=0;
+class TableView extends Primary{
+
     protected $col1=null;
     protected $col2=null;
 

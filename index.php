@@ -12,7 +12,7 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="refresh" content="50">
+        <meta http-equiv="refresh" content="10">
         <LINK rel="stylesheet" type="text/css" href="projInt.css">
     </head>
     <body>
