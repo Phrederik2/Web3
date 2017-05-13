@@ -8,6 +8,9 @@ if ($GEToption==""){
             "&id=0>"."Add"."</a></li>";
 }
 
+/**
+ * Création des lien des tableView en fonction de leurs types
+ */
 foreach($crtList as $crtEntry){
     $item=$crtEntry->getCol1()." - ".$crtEntry->getCol2();
 

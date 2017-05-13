@@ -16,7 +16,11 @@ class Session
         $this->showSession();
     }
     
-    
+    /**
+     * Vérifie les status de la session et permet la destruction de celle-ci en cas de get deco
+     *
+     * @return void
+     */
     private function checkSession(){
         if (session_status()!=PHP_SESSION_ACTIVE)session_start();
         
@@ -25,6 +29,11 @@ class Session
         }
     }
     
+    /**
+     * Vérifie l'existence d'une session et set la session en cas de connexion
+     *
+     * @return void
+     */
     private function setSession(){
         if (isset($_SESSION['login'])) {
             Session::$user=unserialize($_SESSION['login']);
@@ -41,6 +50,11 @@ class Session
         }
     }
     
+    /**
+     * Affichage du formulaire de connexion si il n' a pas de session
+     *
+     * @return void
+     */
     private function showSession(){
         if(Session::$user == null){
             include("View/LoginView.php");

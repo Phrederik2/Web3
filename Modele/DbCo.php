@@ -20,6 +20,11 @@ class DbCo
        DbCo::init();
     }
 
+    /**
+     * Initialisation des valeur pour la connexion et création de la connexion
+     *
+     * @return void
+     */
     static function init()
     {
         DbCo::$localhost="localhost";
@@ -70,7 +75,15 @@ class DbCo
         }
     }
   
-    function getTableViewList($table,$col1,$col2){
+  /**
+   * Retourne l'ensemble des entrée nécessaire à la création des tableView
+   *
+   * @param String $table
+   * @param String $col1
+   * @param String $col2
+   * @return void
+   */
+    function getTableViewList(String $table,String $col1,String $col2){
         $tableList = array();
         
         $Qry = "select id,{$col1},{$col2} from {$table} WHERE IsDelete=0";
@@ -92,7 +105,18 @@ class DbCo
         return $tableList;
     }
     
-    function getTableViewFreed($table,$col1,$col2,$destination,$pivot,$idItem){
+    /**
+     * Retourne la liste des entrée non lié à l'entrée en cours d'utilisation dans un formulaire
+     *
+     * @param String $table
+     * @param String $col1
+     * @param String $col2
+     * @param String $destination
+     * @param String $pivot
+     * @param int $idItem
+     * @return void
+     */
+    function getTableViewFreed(String $table,String $col1,String $col2,String $destination,String $pivot, int $idItem){
         $tableList = array();
         
         $Qry = "SELECT $destination.ID, $destination.$col1, $destination.$col2 FROM $destination WHERE  $destination.ID NOT IN (SELECT $destination FROM $pivot WHERE $table=$idItem)   AND $destination.IsDelete=0";
@@ -113,7 +137,18 @@ class DbCo
         return $tableList;
     }
     
-    function getTableViewAssociate($table,$col1,$col2,$destination,$pivot,$idItem){
+    /**
+     * Retourne la liste des entrée lié à l'entrée en cours d'utilisation dans un formulaire
+     *
+     * @param String $table
+     * @param String $col1
+     * @param String $col2
+     * @param String $destination
+     * @param String $pivot
+     * @param int $idItem
+     * @return void
+     */
+    function getTableViewAssociate(String $table,String $col1,String $col2,String $destination,String $pivot,int $idItem){
         $tableList = array();
         
         $Qry = "SELECT $destination.ID, $destination.$col1, $destination.$col2 FROM $destination JOIN $pivot ON $destination.ID=$pivot.$destination WHERE $pivot.$table = $idItem AND $destination.IsDelete=0";
@@ -134,14 +169,34 @@ class DbCo
         return $tableList;
     }
 
-    function removePivot($origine,$pivot,$destination,$idParent,$idChild)
+/**
+ * Retire entrée de la table pivot
+ *
+ * @param String $origine
+ * @param String $pivot
+ * @param String $destination
+ * @param int $idParent
+ * @param int $idChild
+ * @return void
+ */
+    function removePivot(String $origine,String $pivot,String $destination,int $idParent,int $idChild)
     {
         $Qry = "DELETE FROM $pivot WHERE $origine=$idParent and $destination=$idChild";
         //echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
     }
 
-     function addToPivot($origine,$pivot,$destination,$idParent,$idChild)
+/**
+ * Ajoute entrée dans table pivot
+ *
+ * @param String $origine
+ * @param String $pivot
+ * @param String $destination
+ * @param int $idParent
+ * @param int $idChild
+ * @return void
+ */
+     function addToPivot(String $origine,String $pivot,String $destination,int $idParent,int $idChild)
     {
         $Qry = "INSERT INTO $pivot ($origine,$destination) VALUES ($idParent, $idChild)";
         //echo $Qry;

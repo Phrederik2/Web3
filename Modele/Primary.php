@@ -1,4 +1,7 @@
 <?php
+/**
+ * Class origine contenant les attribut que la plupart des modèle ont
+ */
 class Primary{
     protected $id = 0;
     protected $isAdmin = false;
@@ -12,29 +15,13 @@ class Primary{
         $this->setIsDelete($isDelete);
     }
 
-    function getId(){
-        return $this->id;
-    }
-    function getIsAdmin(){
-        return $this->isAdmin;
-    }
-    function getIsChange(){
-        return $this->isChange;
-    }
-    function getIsDelete(){
-        return $this->isDelete;
-    }
+    function getId(){return $this->id;}
+    function getIsAdmin(){return $this->isAdmin;}
+    function getIsChange(){return $this->isChange;}
+    function getIsDelete(){return $this->isDelete;}
 
-    function setId($id){
-        $this->id = $id;
-    }
-    function setIsAdmin($isAdmin){
-        $this->isAdmin = $isAdmin;
-    }
-    function setIsChange($isChange){
-        $this->isChange = $isChange;
-    }
-    function setIsDelete($isDelete){
-        $this->isDelete = $isDelete;
-    }
+    function setId($id){$this->id = $id;}
+    function setIsAdmin($isAdmin){ $this->isAdmin = $isAdmin;}
+    function setIsChange($isChange){$this->isChange = $isChange;}
+    function setIsDelete($isDelete){$this->isDelete = $isDelete;}
 }
