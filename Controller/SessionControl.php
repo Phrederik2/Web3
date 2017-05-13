@@ -13,6 +13,9 @@ class Session
     {
         if (session_status()!=PHP_SESSION_ACTIVE)session_start();
         
+        if(isset($_GET["deco"]) AND $_GET["deco"]==true){
+           session_destroy();
+        }
         
         if (isset($_SESSION['login'])) {
             Session::$user=unserialize($_SESSION['login']);

@@ -65,9 +65,7 @@ class DbCo
         
         else
         {
-              var_dump($row);        
             $user = new User($row['id'],$row['firstname'],$row['lastname'],$row['isadmin']);
-            var_dump($user);
             return $user;
         }
     }
@@ -87,8 +85,7 @@ class DbCo
             $entry->setId($row['id']);
             $entry->setCol1($row[$col1]);
             $entry->setCol2($row[$col2]);
-            
-            
+             
             $tableList[] = $entry;
         }
         
