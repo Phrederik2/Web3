@@ -294,4 +294,16 @@ public function setTableViewFreed(String $menu,String $column1,String $column2,S
 function getConnectedUser(){
     include("View/ConnexInfo.php");
 }
+
+function getTabletest(){
+    echo "<div id = \"SceduleTab\">";
+    for($i=0;$i<5;$i++){
+        echo "<div class=\"row\">";
+        for($j=0;$j<5;$j++){
+            echo "<div class=\"cell\">content</div>";
+        }
+        echo "</div>";
+    }
+    echo "</div>";
+}
 }

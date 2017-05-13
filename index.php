@@ -1,18 +1,15 @@
 <?php
     session_start();
+    require_once("Controller/ViewControl.php");
+    require_once("Controller/SessionControl.php");
+    $session = new Session();
+    $controller = new Controller();
+    $controller->setForm();
 ?>
 <!DOCTYPE html>
 
 <html lang="en">
-
     <head>
-            <?php
-                require_once("Controller/ViewControl.php");
-                require_once("Controller/SessionControl.php");
-                $session = new Session();
-                $controller = new Controller();
-                $controller->setForm();
-            ?>
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,22 +38,8 @@
                 <?php
                     
                     $controller->getForm();
+                    $controller->getTabletest();
                 ?>
-                <!--<div id="gestPivot">
-                <div>
-                    
-                <h3>Item lié</h3></br>
-                    <?php
-                        $controller->setAssoc();
-                    ?>
-                </div>
-                <div>
-                    
-                <h3>Item non lié</h3></br>                    
-                    <?php
-                        $controller->setFreed();
-                    ?>
-                </div>-->
                 </div>
             </div>
         </article>
