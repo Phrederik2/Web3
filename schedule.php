@@ -1,3 +1,3 @@
 <?php
-$section = "tGestSection.html";
+$section = "tPlanning.html";
 include("Template/tMaster.php");
