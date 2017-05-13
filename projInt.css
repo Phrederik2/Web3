@@ -65,3 +65,15 @@ aside{
 article{
     margin: auto;
 }
+.tableView{
+    background-color: white; 
+    margin: 10px;
+    border:1px solid black;
+    border-radius:5px;
+    display: flex;
+    flex-direction: column;
+}
+.linl{
+    display: flex;
+    flex-direction: column;
+}

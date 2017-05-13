@@ -42,7 +42,7 @@
                     
                     $controller->getForm();
                 ?>
-                <div id="gestPivot">
+                <!--<div id="gestPivot">
                 <div>
                     
                 <h3>Item lié</h3></br>
@@ -56,7 +56,7 @@
                     <?php
                         $controller->setFreed();
                     ?>
-                </div>
+                </div>-->
                 </div>
             </div>
         </article>

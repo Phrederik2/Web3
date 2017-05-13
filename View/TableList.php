@@ -1,6 +1,7 @@
 <?php
 
-$tbv = "<nav class=\"tableView\"><ul>";
+$tbv ="<div class=\"link\"><h3>".$title."</h3></br>";
+$tbv .= "<div class=\"tableView\"><nav><ul>";
 
 if ($GEToption==""){
     $tbv.="<li><a href=".FILE."?menu=".$_GET['menu'].
@@ -33,6 +34,6 @@ foreach($crtList as $crtEntry){
 }
 }
 
-$tbv.="</ul></nav>";
+$tbv.="</ul></nav></div></div>";
 
 echo $tbv;
