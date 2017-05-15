@@ -91,3 +91,23 @@ article{
     border:1px solid black;
     padding: 5px;
 }
+
+#page{
+    display: flex;
+    flex-direction: row;
+}
+
+#activity, #planning, #list{
+    height:100%;
+    margin: 5px;
+    padding: 5px;
+    background-color: red;
+}
+
+#activity,#list{
+    width: 25%;
+}
+
+#planning{
+    width: 50%;
+}

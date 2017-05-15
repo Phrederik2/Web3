@@ -1,6 +1,7 @@
 <?php
 
 require_once("Modele/User.php");
+require_once("Modele/DbCo.php");
 
 /**
 * Recupere la session en memoire, ouvre une session au besoin et la ferme si necessaire.
