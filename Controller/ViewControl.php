@@ -65,13 +65,15 @@ class Controller{
 
     /**
      * Remplissage de l'array menu pour définir les liens du menu principal
-     *
+     * 
+     * exemple:  Controller::$menu["Titre dans le menu"]=["Key dans l'URL'","Value dans l'url'","Page appellée"]; 
      * @return void
      */
     private function setMenu()
     {
-       Controller::$menu["User"]="user"; 
-       Controller::$menu["Department"]="department";
+       Controller::$menu["User"]=["menu","user","index"]; 
+       Controller::$menu["Department"]=["menu","department","index"];
+       Controller::$menu["Schedule"]=[null,null,"schedule"];
     }
 
     /**
