@@ -55,7 +55,8 @@ section{
     flex-direction : row;
     /*border:1px solid black;
     border-radius: 5px;*/
-    margin: auto;
+    /*margin: auto;*/
+    margin: 5px;
 }
 
 aside{
@@ -95,13 +96,17 @@ article{
 #page{
     display: flex;
     flex-direction: row;
+    margin-bottom:10px;
+    /*height: 100%;*/
+    width: 100%;
+    height: 100%;
 }
 
 #activity, #planning, #list{
-    height:100%;
     margin: 5px;
     padding: 5px;
     background-color: red;
+    border:1px solid black;
 }
 
 #activity,#list{

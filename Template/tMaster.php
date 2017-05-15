@@ -34,9 +34,5 @@
                include($section);
             ?>
     </section>
-      
-    </head>
-    <body>
-
     </body>
 </html>
