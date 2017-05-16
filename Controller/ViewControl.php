@@ -297,7 +297,7 @@ function getConnectedUser(){
     include("View/ConnexInfo.php");
 }
 
-function getTabletest(){
+/*function getTabletest(){
     echo "<div id = \"SceduleTab\">";
     for($i=0;$i<5;$i++){
         echo "<div class=\"row\">";
@@ -307,5 +307,5 @@ function getTabletest(){
         echo "</div>";
     }
     echo "</div>";
-}
+}*/
 }
