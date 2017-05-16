@@ -79,8 +79,10 @@ article{
     flex-direction: column;
 }
 
-#scheduleTable{
+#ScheduleTab{
     display:table;
+    border:1px solid yellow;
+    margin: 20px;
 }
 .row{
     display: table-row;
@@ -105,14 +107,22 @@ article{
 #activity, #planning, #list{
     margin: 5px;
     padding: 5px;
-    background-color: red;
+    background-color: lightblue;
     border:1px solid black;
 }
 
 #activity,#list{
     width: 25%;
+    margin:5px;
 }
 
 #planning{
     width: 50%;
 }
+
+#week,#local{
+ border:1px solid black;
+ padding: 5px;
+ overflow: auto;
+ height: 50%;
+ }
