@@ -1,5 +1,13 @@
+         <?php
+            include_once("Controller/ActivityTreeControl.php");
+            $activity = new ActivityTree();
+            ?>
     <div id="page">
-        <div id="activity">Activity</div>  
+        <div id="activity">
+           <?php 
+            $activity->getData();
+            ?>
+            </div>  
 
         <div id="planning">Planning</div> 
 
