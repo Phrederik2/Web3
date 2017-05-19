@@ -1,5 +1,6 @@
 <?php
-include_once("Controller/SessionControl.php");
+$correctionPath=".";
+include_once("../Controller/SessionControl.php");
 $session = new Session();
 
 if (isset($_GET)){

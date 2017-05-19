@@ -1,7 +1,14 @@
 <?php
 
-require_once("Modele/User.php");
-require_once("Modele/TableView.php");
+if(!isset($correctionPath)){
+
+    require_once("./Modele/User.php");
+    require_once("./Modele/TableView.php");
+}
+else {
+    require_once("../Modele/User.php");
+    require_once("../Modele/TableView.php");
+}
 
 /**
 * Class connexion db

@@ -1,6 +1,11 @@
 <?php
+if(!isset($correctionPath)){
 
-require_once("Modele/Primary.php");
+    include_once("./Modele/Primary.php");
+}
+else {
+    include_once("../Modele/Primary.php");
+}
 
 class User extends Primary{
     
