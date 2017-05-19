@@ -20,9 +20,15 @@
         <div id="list">
             <div id="week">Liste des semaines
                 <?php
-            for ($i=0; $i < 10; $i++) { 
+                require_once("Controller/WeekTreeControl.php");
+
+                $week = new WeekTreeControl();
+                var_dump($week);
+                //echo ($week->getToday());
+                //echo date("Y-m-d");
+            /*for ($i=0; $i < 10; $i++) { 
               echo "</br>semaine".$i;
-            }
+            }*/
         ?>
             </div>
             <div id="local">liste locaux

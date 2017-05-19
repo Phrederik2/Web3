@@ -7,7 +7,8 @@ foreach($estaTab as $key => $value){
     if($localTab = DbCO::getLocalEntry($value)){
         $str.="<ul>";
         foreach($localTab as $crtEntry){
-           $str.="<li>".$crtEntry."</li>";
+           // <a onclick=\"request('index.php?index={$item[$limit+1]}')\" href=\"#\"><li>$temp[$key]</a>
+           $str.="<a onclick=\"request('index.php?index={$crtEntry})\" href=\"#\"><li>$crtEntry</a></li>";
         }
         $str.="</ul>";
     }
