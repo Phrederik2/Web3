@@ -19,7 +19,7 @@ function getXMLHttpRequest() {
 	return xhr;
 }
 
-function request(callback) {
+function request(callback,value) {
 
     var xhr = getXMLHttpRequest();
 
@@ -29,14 +29,15 @@ function request(callback) {
         }
     };
 
-    xhr.open("GET", "verif.php?test=true", true);
+    xhr.open("GET", "verif.php?"+value, true);
     xhr.send(null);
 }
 
 function check(xhr) {
-    //alert(xhr);
+   
     document.getElementById("testajax").innerHTML = xhr;
 }
+
 request(check);
 $(document).ready(function(){
 
@@ -45,4 +46,8 @@ $(document).ready(function(){
  $(function () { $('#test').jstree(); });
 
  $.jstree.defaults.core.themes.variant = "small";
+<<<<<<< HEAD
+=======
+
+>>>>>>> eff5847e294ae5763097b2433128c3ed9d751d9d
 });
