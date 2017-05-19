@@ -284,7 +284,11 @@ class DbCo
         return $tableList;
     }
 
-   
+   /**
+    * Envoi de la requete de création de l'arbre et renvoi le tableau correspondant
+    *
+    * @return void
+    */
    static function getActivityTree()
     {
         $data=Array();
