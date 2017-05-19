@@ -6,9 +6,9 @@ foreach($estaTab as $key => $value){
     //On récupère la liste des locaux en rapport avec l'établissement en passent la valeur qui correspond à l'id de l'établissement
     if($localTab = DbCO::getLocalEntry($value)){
         $str.="<ul>";
-        foreach($localTab as $crtEntry){
+        foreach($localTab as $key=>$value){
            // <a onclick=\"request('index.php?index={$item[$limit+1]}')\" href=\"#\"><li>$temp[$key]</a>
-           $str.="<a onclick=\"request('index.php?index={$crtEntry})\" href=\"#\"><li>$crtEntry</a></li>";
+           $str.="<a onclick=\"request(check,'localId={$value}')\" href=\"#\"><li>$key</a></li>";
         }
         $str.="</ul>";
     }

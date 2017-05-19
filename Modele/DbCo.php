@@ -272,14 +272,15 @@ class DbCo
      */
     static function getLocalEntry($indice){
         $tableList = array();
-        $Qry = "SELECT title FROM local WHERE idestablishment=$indice and isdelete=0";
+        $Qry = "SELECT title,id FROM local WHERE idestablishment=$indice and isdelete=0";
         //echo $Qry;
         $statement = DbCo::getPDO()->query($Qry);
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
-            $entry = $row['title'];
-            $tableList[] = $entry;
+            $title = $row['title'];
+            $id = $row['id'];
+            $tableList[$title] = $id;
         }
         return $tableList;
     }
