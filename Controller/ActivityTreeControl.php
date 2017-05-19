@@ -62,13 +62,15 @@ class ActivityTree
      *                      donc que la collones en retrait sera utilisée comme clé dans le lien ou l'appel JS
      * @return void
      */
-    function constructTree($retrait=1){
+    private function constructTree($retrait=1){
 
         $retrait = 1;
         $limit=null;
         $tree = array();
         $temp=null;
         $level=-1;
+
+        $str="";
 
        foreach ($this->data as $item) {
         
@@ -86,37 +88,46 @@ class ActivityTree
 
                     if($level<$key){
                         $level=$key;
-                        echo "<ul>";
+                        $str.= "<ul>";
                     }
                     if ($key<$level){
                         for ($i=$level; $i != $key ; $i--) { 
                             $level--;
-                            echo "</ul>";
+                            $str.= "</ul>";
                         }
                     }
 
                         switch ($key+1) {
                             case ($key+1 == $limit+1):
-                                echo "<a onclick=\"request('index.php?index={$item[$limit+1]}')\" href=\"\"><li>$temp[$key]</li></a>";
+                                $str.= "<a onclick=\"request('index.php?index={$item[$limit+1]}')\" href=\"#\"><li>$temp[$key]</li></a>";
                                 break;
                             case ($key+1 < $limit+1):
-                                echo "<li>$temp[$key]</li>";
+                                $str.= "<li>$temp[$key]</li>";
                                 break;
                             
                             default:
                                 # code...
                                 break;
-                        }
-                    
+                        }   
                      }   
-                }
-                
+                }        
             }
+        }
 
-        }
         for ($i=$level+1; $i !=0; $i--) { 
-             echo "</ul>";
+             $str.= "</ul>";
         }
+
+        return $str;
+    }
+
+    /**
+     * lance la construction et l'ecris *
+     * @return void
+     */
+    public function toString()
+    {
+        echo $this->constructTree();
     }
 
 }
