@@ -17,14 +17,14 @@ class DbCo
     
     public function __construct()
     {
-       DbCo::init();
+        DbCo::init();
     }
-
+    
     /**
-     * Initialisation des valeur pour la connexion et création de la connexion
-     *
-     * @return void
-     */
+    * Initialisation des valeur pour la connexion et création de la connexion
+    *
+    * @return void
+    */
     static function init()
     {
         DbCo::$localhost="localhost";
@@ -74,31 +74,31 @@ class DbCo
             return $user;
         }
     }
-  
-  /**
-   * Retourne l'ensemble des entrée nécessaire à la création des tableView
-   *
-   * @param String $table
-   * @param String $col1
-   * @param String $col2
-   * @return void
-   */
+    
+    /**
+    * Retourne l'ensemble des entrée nécessaire à la création des tableView
+    *
+    * @param String $table
+    * @param String $col1
+    * @param String $col2
+    * @return void
+    */
     function getTableViewList(String $table,String $col1,String $col2){
         $tableList = array();
         
         $Qry = "select id,{$col1},{$col2} from {$table} WHERE IsDelete=0";
         echo $Qry;
-
+        
         $statement = DbCo::$pdo->query($Qry);
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
-
+            
             $entry = new TableView();
             $entry->setId($row['id']);
             $entry->setCol1($row[$col1]);
             $entry->setCol2($row[$col2]);
-             
+            
             $tableList[] = $entry;
         }
         
@@ -106,49 +106,49 @@ class DbCo
     }
     
     /**
-     * Retourne la liste des entrée non lié à l'entrée en cours d'utilisation dans un formulaire
-     *
-     * @param String $table
-     * @param String $col1
-     * @param String $col2
-     * @param String $destination
-     * @param String $pivot
-     * @param int $idItem
-     * @return void
-     */
+    * Retourne la liste des entrée non lié à l'entrée en cours d'utilisation dans un formulaire
+    *
+    * @param String $table
+    * @param String $col1
+    * @param String $col2
+    * @param String $destination
+    * @param String $pivot
+    * @param int $idItem
+    * @return void
+    */
     function getTableViewFreed(String $table,String $col1,String $col2,String $destination,String $pivot, int $idItem){
         $tableList = array();
         
         $Qry = "SELECT $destination.ID, $destination.$col1, $destination.$col2 FROM $destination WHERE  $destination.ID NOT IN (SELECT $destination FROM $pivot WHERE $table=$idItem)   AND $destination.IsDelete=0";
         //echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
-
-            while($row = $statement->fetch(PDO::FETCH_ASSOC))
-            {
-
-                $entry = new TableView();
-                $entry->setId($row['ID']);
-                $entry->setCol1($row[$col1]);
-                $entry->setCol2($row[$col2]);
-                     
-                $tableList[] = $entry;
-            }
- 
+        
+        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            
+            $entry = new TableView();
+            $entry->setId($row['ID']);
+            $entry->setCol1($row[$col1]);
+            $entry->setCol2($row[$col2]);
+            
+            $tableList[] = $entry;
+        }
+        
         return $tableList;
     }
-
+    
     
     /**
-     * Retourne la liste des entrée lié à l'entrée en cours d'utilisation dans un formulaire
-     *
-     * @param String $table
-     * @param String $col1
-     * @param String $col2
-     * @param String $destination
-     * @param String $pivot
-     * @param int $idItem
-     * @return void
-     */
+    * Retourne la liste des entrée lié à l'entrée en cours d'utilisation dans un formulaire
+    *
+    * @param String $table
+    * @param String $col1
+    * @param String $col2
+    * @param String $destination
+    * @param String $pivot
+    * @param int $idItem
+    * @return void
+    */
     function getTableViewAssociate(String $table,String $col1,String $col2,String $destination,String $pivot,int $idItem){
         $tableList = array();
         
@@ -169,40 +169,118 @@ class DbCo
         
         return $tableList;
     }
-
-/**
- * Retire entrée de la table pivot
- *
- * @param String $origine
- * @param String $pivot
- * @param String $destination
- * @param int $idParent
- * @param int $idChild
- * @return void
- */
+    
+    /**
+    * Retire entrée de la table pivot
+    *
+    * @param String $origine
+    * @param String $pivot
+    * @param String $destination
+    * @param int $idParent
+    * @param int $idChild
+    * @return void
+    */
     function removePivot(String $origine,String $pivot,String $destination,int $idParent,int $idChild)
     {
         $Qry = "DELETE FROM $pivot WHERE $origine=$idParent and $destination=$idChild";
         //echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
     }
-
-/**
- * Ajoute entrée dans table pivot
- *
- * @param String $origine
- * @param String $pivot
- * @param String $destination
- * @param int $idParent
- * @param int $idChild
- * @return void
- */
-     function addToPivot(String $origine,String $pivot,String $destination,int $idParent,int $idChild)
+    
+    /**
+    * Ajoute entrée dans table pivot
+    *
+    * @param String $origine
+    * @param String $pivot
+    * @param String $destination
+    * @param int $idParent
+    * @param int $idChild
+    * @return void
+    */
+    function addToPivot(String $origine,String $pivot,String $destination,int $idParent,int $idChild)
     {
         $Qry = "INSERT INTO $pivot ($origine,$destination) VALUES ($idParent, $idChild)";
         //echo $Qry;
         $statement = DbCo::$pdo->query($Qry);
     }
     
+    /**
+    * Retourne une liste des slots encodés
+    *
+    * @return void
+    */
+    function getSlot(){
+        $slotList = array();
+        $Qry = "SELECT start FROM slot WHERE isdelete=0";
+        $statement = DbCo::getPDO()->query($Qry);
+        
+        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $start = $row['start'];
+            
+            $slotList[] = $start;
+        }
+        //var_dump($tableList);
+        return $slotList;
+    }
     
+    /**
+    * Retourne une liste des jour encodés
+    *
+    * @return void
+    */
+    function getDay(){
+        $dayList = array();
+        $Qry = "SELECT title FROM day WHERE isdelete=0";
+        $statement = DbCo::getPDO()->query($Qry);
+        
+        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $title = $row['title'];
+            
+            $dayList[] = $title;
+        }
+        //var_dump($tableList);
+        return $dayList;
+    }
+    
+    /**
+     * Retourne la liste complète des établissement
+     *
+     * @return void
+     */
+    function getEstaEntry(){
+        $tableList = array();
+        $Qry = "SELECT id,title FROM establishment WHERE isdelete=0";
+        $statement = DbCo::getPDO()->query($Qry);
+        
+        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $title = $row['title'];
+            $id = $row['id'];
+            $tableList[$title] = $id;
+        }
+        //var_dump($tableList);
+        return $tableList;
+    }
+
+    /**
+     * Retourne la liste complète des locaux en fonction d'un de l'index passé en paramètre équivalent à l'id de l'établissement(foreign key)
+     *
+     * @param [type] $indice
+     * @return void
+     */
+    static function getLocalEntry($indice){
+        $tableList = array();
+        $Qry = "SELECT title FROM local WHERE idestablishment=$indice and isdelete=0";
+        //echo $Qry;
+        $statement = DbCo::getPDO()->query($Qry);
+        
+        while($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $entry = $row['title'];
+            $tableList[] = $entry;
+        }
+        return $tableList;
+    }
 }
