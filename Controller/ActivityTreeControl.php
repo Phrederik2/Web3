@@ -66,16 +66,16 @@ class ActivityTree
                     if ($key<$level){
                         for ($i=$level; $i != $key ; $i--) { 
                             $level--;
-                            $str.= "</ul>";
+                            $str.= "</ul></li>";
                         }
                     }
 
                         switch ($key+1) {
                             case ($key+1 == $limit+1):
-                                $str.= "<a onclick=\"request('index.php?index={$item[$limit+1]}')\" href=\"#\"><li>$temp[$key]</li></a>";
+                                $str.= "<a onclick=\"request('index.php?index={$item[$limit+1]}')\" href=\"#\"><li>$temp[$key]</a>";
                                 break;
                             case ($key+1 < $limit+1):
-                                $str.= "<li>$temp[$key]</li>";
+                                $str.= "<li>$temp[$key]";
                                 break;
                             
                             default:
@@ -88,7 +88,7 @@ class ActivityTree
         }
 
         for ($i=$level+1; $i !=0; $i--) { 
-             $str.= "</ul>";
+             $str.= "</ul></li>";
         }
 
         return $str;
