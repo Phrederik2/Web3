@@ -38,8 +38,12 @@ function check(xhr) {
     document.getElementById("testajax").innerHTML = xhr;
 }
 request(check);
+$(document).ready(function(){
 
  $(function () { $('#activity').jstree(); });
+ $(function () { $('#local').jstree(); });
+ $(function () { $('#test').jstree(); });
+
 
             /*$('#activity').jstree({
   "plugins" : [ "wholerow", "checkbox" ]
@@ -56,3 +60,4 @@ request(check);
   },
   "plugins" : [ "wholerow", "checkbox" ]
 });*/
+});
