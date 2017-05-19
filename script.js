@@ -45,22 +45,4 @@ $(document).ready(function(){
  $(function () { $('#test').jstree(); });
 
  $.jstree.defaults.core.themes.variant = "small";
- //li.jstree-leaf > a .jstree-icon { display: none; }
-
-
-            /*$('.testLocal').jstree({
-  "plugins" : [ "wholerow", "checkbox" ]
-});
-
-/*$('#activity').jstree({
-  "core" : {
-    "themes" : {
-      "variant" : "large"
-    }
-  },
-  "checkbox" : {
-    "keep_selected_style" : false
-  },
-  "plugins" : [ "wholerow", "checkbox" ]
-});*/
 });
