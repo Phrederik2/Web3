@@ -1,7 +1,9 @@
 <?php
 
 require_once("Modele/DbCo.php");
-
+/**
+ * Class gestion du TreeView dans le schedule
+ */
 class LocalTree{
     
     /**
