@@ -38,3 +38,21 @@ function check(xhr) {
     document.getElementById("testajax").innerHTML = xhr;
 }
 request(check);
+
+ $(function () { $('#activity').jstree(); });
+
+            /*$('#activity').jstree({
+  "plugins" : [ "wholerow", "checkbox" ]
+});*/
+
+/*$('#activity').jstree({
+  "core" : {
+    "themes" : {
+      "variant" : "large"
+    }
+  },
+  "checkbox" : {
+    "keep_selected_style" : false
+  },
+  "plugins" : [ "wholerow", "checkbox" ]
+});*/
