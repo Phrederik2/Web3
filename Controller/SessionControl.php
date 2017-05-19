@@ -61,4 +61,13 @@ class Session
             include("View/LoginView.php");
         }
     }
+
+    public function saveSession()
+    {
+          $_SESSION['login'] = serialize(Session::$user);
+    }
+
+    static function getUser(){return Session::$user;}
+    function setUser($user){Session::$user= $user;}
+
 }

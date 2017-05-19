@@ -72,7 +72,7 @@ class ActivityTree
 
                         switch ($key+1) {
                             case ($key+1 == $limit+1):
-                                $str.= "<a onclick=\"request('index.php?index={$item[$limit+1]}')\" href=\"#\"><li>$temp[$key]</a>";
+                                $str.= "<a onclick=\"request(check,'activity={$item[$limit+1]}')\" href=\"#\"><li>$temp[$key]</a>";
                                 break;
                             case ($key+1 < $limit+1):
                                 $str.= "<li>$temp[$key]";

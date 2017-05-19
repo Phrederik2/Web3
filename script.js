@@ -19,7 +19,7 @@ function getXMLHttpRequest() {
 	return xhr;
 }
 
-function request(callback) {
+function request(callback,value) {
 
     var xhr = getXMLHttpRequest();
 
@@ -29,14 +29,15 @@ function request(callback) {
         }
     };
 
-    xhr.open("GET", "verif.php?test=true", true);
+    xhr.open("GET", "verif.php?"+value, true);
     xhr.send(null);
 }
 
 function check(xhr) {
-    //alert(xhr);
+   
     document.getElementById("testajax").innerHTML = xhr;
 }
+
 request(check);
 $(document).ready(function(){
 
@@ -45,22 +46,5 @@ $(document).ready(function(){
  $(function () { $('#test').jstree(); });
 
  $.jstree.defaults.core.themes.variant = "small";
- //li.jstree-leaf > a .jstree-icon { display: none; }
 
-
-            /*$('.testLocal').jstree({
-  "plugins" : [ "wholerow", "checkbox" ]
-});
-
-/*$('#activity').jstree({
-  "core" : {
-    "themes" : {
-      "variant" : "large"
-    }
-  },
-  "checkbox" : {
-    "keep_selected_style" : false
-  },
-  "plugins" : [ "wholerow", "checkbox" ]
-});*/
 });
