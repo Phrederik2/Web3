@@ -283,4 +283,31 @@ class DbCo
         }
         return $tableList;
     }
+
+   
+   static function getActivityTree()
+    {
+        $data=Array();
+        $query = 
+        '
+        select department.TITLE department, curriculum.TITLE curriculum, teachingunit.TITLE teachingunit, activityunit.TITLE activityunit, subactivityunit.TITLE subactivityunit, subactivityunit.ID ID from department 
+        join contain on department.ID=contain.DEPARTMENT
+        join curriculum on contain.CURRICULUM=curriculum.ID 
+        join contain2 on curriculum.ID=contain2.Curriculum
+        join teachingunit on contain2.TeachingUnit=teachingunit.ID
+        join contain3 on teachingunit.ID=contain3.TEACHINGUNIT
+        join activityunit on contain3.ACTIVITYUNIT=activityunit.ID
+        join compose on activityunit.ID=compose.ActivityUnit
+        join subactivityunit on compose.SubActivityUnit=subactivityunit.id
+
+        where department.ISDELETE=0 and curriculum.ISDELETE=0 and teachingunit.ISDELETE=0 and activityunit.ISDELETE=0 and subactivityunit.ISDELETE=0
+        '
+        ;
+        $statement = DbCo::getPDO()->query($query);
+        while($item = $statement->fetch(PDO::FETCH_NUM)){
+            array_push($data,$item);
+        }
+
+        return $data;
+    }
 }
