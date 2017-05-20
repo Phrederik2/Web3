@@ -46,8 +46,4 @@ $(document).ready(function(){
  $(function () { $('#test').jstree(); });
 
  $.jstree.defaults.core.themes.variant = "small";
-<<<<<<< HEAD
-=======
-
->>>>>>> eff5847e294ae5763097b2433128c3ed9d751d9d
 });
