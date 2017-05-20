@@ -218,14 +218,16 @@ class DbCo
     */
     function getSlot(){
         $slotList = array();
-        $Qry = "SELECT start FROM slot WHERE isdelete=0";
+        $Qry = "SELECT start,end,id FROM slot WHERE isdelete=0";
         $statement = DbCo::getPDO()->query($Qry);
         
         while($row = $statement->fetch(PDO::FETCH_ASSOC))
         {
-            $start = $row['start'];
-            
-            $slotList[] = $start;
+            $tmp=null;
+            foreach ($row as $key => $value) {
+                $tmp[$key]=$value;
+            }
+            array_push($slotList,$tmp);
         }
         //var_dump($tableList);
         return $slotList;
@@ -317,6 +319,41 @@ class DbCo
         ;
         $statement = DbCo::getPDO()->query($query);
         while($item = $statement->fetch(PDO::FETCH_NUM)){
+            array_push($data,$item);
+        }
+
+        return $data;
+    }
+
+    /**
+     * recupere les cellules par rapport au donnée de l'utilisateur en session   
+     * retourne le tableau de données
+     * 
+     * @return void
+     */
+    static function getCellPlanning()
+    {
+        $user = Session::getUser();
+        
+        //simulation
+        $user->setLocal(1);
+        $user->setWeek(["2017-04-17","2017-04-23"]);
+
+        $local = $user->getLocal();
+        $dateStart = $user->getWeek()[0];
+        $dateEnd = $user->getWeek()[1];
+        $data=Array();
+        $query = 
+        '
+        SELECT subactivityunit.*, planning.* from planning  
+        join subactivityunit on planning.ACTIVITY=subactivityunit.ID  
+        join local on planning.LOCAL=local.ID 
+        join slot on planning.SLOT=slot.ID 
+        WHERE planning.local = '."'$local'".' and planning.DDATE between '."'$dateStart'".' and '."'$dateEnd'".' AND planning.isdelete=0
+        '
+        ;
+        $statement = DbCo::getPDO()->query($query);
+        while($item = $statement->fetch(PDO::FETCH_ASSOC)){
             array_push($data,$item);
         }
 

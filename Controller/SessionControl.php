@@ -14,13 +14,13 @@ else {
 */
 class Session
 {
-    public static $user;
+    public static $user=null;
     
     function __construct()
     {
         $this->checkSession();
         $this->setSession();
-        $this->showSession();
+       // $this->showSession();
     }
     
     /**
@@ -32,6 +32,7 @@ class Session
         if (session_status()!=PHP_SESSION_ACTIVE)session_start();
         
         if(isset($_GET["deco"]) AND $_GET["deco"]==true){
+            unset($_SESSION['login']);
             session_destroy();
         }
     }
@@ -62,12 +63,17 @@ class Session
      *
      * @return void
      */
-    private function showSession(){
+    function showSession(){
         if(Session::$user == null){
             include("View/LoginView.php");
         }
     }
 
+    /**
+     * Sauvegarde le user serialiser en session
+     *
+     * @return void
+     */
     public function saveSession()
     {
           $_SESSION['login'] = serialize(Session::$user);

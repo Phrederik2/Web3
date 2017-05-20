@@ -966,7 +966,7 @@ class Form {
 		$this->bindValue ();
 		$str = $this->showFieldset ();
 		$str .= $this->showTitle ();
-		$str .= "<Form method=\"POST\">";
+		$str .= "<Form action=\"".$_SERVER['SCRIPT_NAME']."\" method=\"POST\">";
 		
 		// pour tout les elements de la liste, l'affiche et verifie le regex, si non conforme affiche l'erreur en dessous du champ
 		foreach ( $this->list as $tmp ) {

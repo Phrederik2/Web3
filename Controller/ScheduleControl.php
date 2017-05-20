@@ -7,10 +7,15 @@ require_once("Modele/DbCo.php");
 class SceduleControl{
 
     private $dbCo;
+    private $data;
 
     public function __construct(){
         $this->dbCo = new DbCo();
+        $this->data = DbCo::getCellPlanning();
+
     }
+
+
     
     
     /**
@@ -21,6 +26,21 @@ class SceduleControl{
     public function getSchedule(){
         $slotList = $this->dbCo->getSlot();
         $dayList = $this->dbCo->getDay();
+        $week=["2017-04-17","2017-04-18","2017-04-19","2017-04-20","2017-04-21"];
         include_once("View/ScheduleView.php");
     }
+
+    private function searchActivity($slot,$date)
+    {
+        $str="";
+       foreach ($this->data as $item) {
+           if ($item["DDATE"]==$date AND $item["SLOT"]==$slot){
+               if (strlen($str)>0)$str.= "</br>";
+               $str.= "<a href\"#\">".$item["TITLE"] ." (".$item["CODE"].")</a>";
+           }
+       }
+
+       return $str;
+    }
+
 }

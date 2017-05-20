@@ -22,5 +22,6 @@ class LocalTree{
         $estaTab = $this->dbCo->getEstaEntry();
         //$localTab = $this->getLocalEntry();
         include("View/LocalTreeView.php");
+
     }
 }
