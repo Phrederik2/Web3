@@ -1,5 +1,13 @@
 <?php
-require_once("Modele/Primary.php");
+
+if(!isset($correctionPath)){
+
+    require_once("./Modele/Primary.php");
+}
+else {
+    require_once("../Modele/Primary.php");
+}
+
 
 class TableView extends Primary{
 

@@ -1,3 +1,6 @@
+/**
+ * retourne l'object XMLHttpRequest si il est instanciable
+ */
 function getXMLHttpRequest() {
 	var xhr = null;
 	
@@ -19,6 +22,12 @@ function getXMLHttpRequest() {
 	return xhr;
 }
 
+/**
+ * execute l'object XMLHttpRequest, quand reasystate est ok, passe le retour du serveur dans la fonction de callback.
+ * 
+ * @param function callback function a utiliser au retour de l'object XMLHttpRequest
+ * @param string value les jeux de clé/valeur a ajouter au _GET
+ */
 function request(callback,value) {
 
     var xhr = getXMLHttpRequest();
@@ -29,16 +38,19 @@ function request(callback,value) {
         }
     };
 
-    xhr.open("GET", "verif.php?"+value, true);
+    xhr.open("GET", "Ajax/ajaxSchedule.php?"+value, true);
     xhr.send(null);
 }
 
+/**
+ * fonction qui callback qui recupere le string et l'envoi dans un elements du dom
+ * @param String xhr 
+ */
 function check(xhr) {
    
     document.getElementById("testajax").innerHTML = xhr;
 }
 
-request(check);
 $(document).ready(function(){
 
  $(function () { $('#activity').jstree(); });
@@ -47,3 +59,4 @@ $(document).ready(function(){
 
  $.jstree.defaults.core.themes.variant = "small";
 });
+
