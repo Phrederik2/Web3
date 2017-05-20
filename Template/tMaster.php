@@ -33,7 +33,12 @@
     </header>
     <section>
         <?php
-               include($section);
+                if (Session::getUser()==null){
+                    $session->showSession();
+                }
+                else {
+                   include($section);
+                }
             ?>
     </section>
     </body>

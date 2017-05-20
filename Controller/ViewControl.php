@@ -240,72 +240,62 @@ public function getFreed()
         Controller::getPivot(),
         $_GET["id"]);
     }
-}
-
-/**
- * Affichage des entrée d'une table en rapport avec le formulaire appelé
- *
- * @param String $menu
- * @param String $column1
- * @param String $column2
- * @return void
- */
-public function getTableView(String $menu,String $column1,String $column2){
-    $GEToption = "";
-    $title = $menu;
-    $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
-    include("view/TableList.php");
-}
-
-/**
- * Affichage des élément lié à une table
- *
- * @param String $menu
- * @param String $column1
- * @param String $column2
- * @param String $destination
- * @param String $pivot
- * @param int $idItem
- * @return void
- */
-public function setTableViewAssoc(String $menu,String $column1,String $column2,String $destination,String $pivot, int $idItem){
-    $GEToption = "assoc";
-    $title = $destination." lié";
-    $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
-    include("view/TableList.php");
-}
-
-/**
- * Affichage des élément existant mais non lié à la table actuelle
- *
- * @param String $menu
- * @param String $column1
- * @param String $column2
- * @param String $destination
- * @param String $pivot
- * @param int $idItem
- * @return void
- */
-public function setTableViewFreed(String $menu,String $column1,String $column2,String $destination,String $pivot,int $idItem){
-    $GEToption = "freed";
-    $title = $destination." non lié";
-    $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
-    include("view/TableList.php");
-}
-
-function getConnectedUser(){
-    include("View/ConnexInfo.php");
-}
-
-/*function getTabletest(){
-    echo "<div id = \"SceduleTab\">";
-    for($i=0;$i<5;$i++){
-        echo "<div class=\"row\">";
-        for($j=0;$j<5;$j++){
-            echo "<div class=\"cell\">content</div>";
-        }
-        echo "</div>";
     }
-    echo "</div>";
-}*/
+
+    /**
+     * Affichage des entrée d'une table en rapport avec le formulaire appelé
+     *
+     * @param String $menu
+     * @param String $column1
+     * @param String $column2
+     * @return void
+     */
+    public function getTableView(String $menu,String $column1,String $column2){
+        $GEToption = "";
+        $title = $menu;
+        $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
+        include("view/TableList.php");
+}
+
+    /**
+     * Affichage des élément lié à une table
+     *
+     * @param String $menu
+     * @param String $column1
+     * @param String $column2
+     * @param String $destination
+     * @param String $pivot
+     * @param int $idItem
+     * @return void
+     */
+    public function setTableViewAssoc(String $menu,String $column1,String $column2,String $destination,String $pivot, int $idItem){
+        $GEToption = "assoc";
+        $title = $destination." lié";
+        $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
+        include("view/TableList.php");
+}
+
+    /**
+     * Affichage des élément existant mais non lié à la table actuelle
+     *
+     * @param String $menu
+     * @param String $column1
+     * @param String $column2
+     * @param String $destination
+     * @param String $pivot
+     * @param int $idItem
+     * @return void
+     */
+    public function setTableViewFreed(String $menu,String $column1,String $column2,String $destination,String $pivot,int $idItem){
+        $GEToption = "freed";
+        $title = $destination." non lié";
+        $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
+        include("view/TableList.php");
+    }
+
+    function getConnectedUser(){
+        include("View/ConnexInfo.php");
+        
+    }
+
 }
