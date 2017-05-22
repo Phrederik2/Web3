@@ -1,11 +1,4 @@
-<?php
-    session_start();
-    require_once("Controller/SessionControl.php");
-    $session = new Session();
-    require_once("Controller/ViewControl.php");
-    $controller = new Controller();
-    $controller->setForm();
-?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -21,25 +14,17 @@
     </head>
     <body>
     <div id="testajax"></div>
-    <?php
-        $controller->getConnectedUser();
-    ?>
+    %user%
     <header>
         <nav>      
-             <?php
-               $controller->getMenu();
-            ?>
+            %menu%
         </nav>
     </header>
     <section>
         <?php
-                if (Session::getUser()==null){
-                    $session->showSession();
-                }
-                else {
-                   include($section);
-                }
+               
             ?>
+            %section%
     </section>
     </body>
      <script src="script.js"></script>

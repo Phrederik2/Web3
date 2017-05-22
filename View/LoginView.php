@@ -11,4 +11,4 @@ $form->add(new Password("Password","pass"));
 $form->reinit();
 
 $form->initialize();
-echo $form->toString();
+$str=$form->toString();

@@ -39,4 +39,4 @@ foreach($crtList as $crtEntry){
 
 $tbv.="</ul></nav></div></div>";
 
-echo $tbv;
+$str = $tbv;

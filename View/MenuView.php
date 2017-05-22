@@ -6,4 +6,3 @@ foreach (Controller::$menu as $key => $value) {
     $str.= ">$key</a></li>";
 }
 $str.="</ul>";
-echo $str;

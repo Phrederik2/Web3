@@ -63,10 +63,13 @@ class Session
      *
      * @return void
      */
-    function showSession(){
+     static function showSession(){
         if(Session::$user == null){
+            $str="";
             include("View/LoginView.php");
         }
+        
+        return $str;
     }
 
     /**

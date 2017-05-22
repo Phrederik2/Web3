@@ -59,7 +59,7 @@ class Controller{
     public function switchMenu()
     {
         if (isset($_GET["menu"]) and isset($_SESSION['login'])){
-            $this->getTableView($_GET["menu"],Controller::getListColumn1(),Controller::getListColumn2());
+            return $this->getTableView($_GET["menu"],Controller::getListColumn1(),Controller::getListColumn2());
         }
     }
 
@@ -83,8 +83,11 @@ class Controller{
      */
     public function getMenu()
     {
-        if(isset($_SESSION['login']))
+        $str="";
+        if(isset($_SESSION['login'])){
             include("View/MenuView.php");
+        }
+        return $str;
     }
     
     /**
@@ -195,13 +198,15 @@ public function setForm(){
  */
 public function getForm()
 {
+    $str="";
     if(Controller::$form!=null and isset($_SESSION['login'])){
-        echo Controller::$form->toString();
-        echo"<div id=gestPivot>";
-        $this->getAssoc();
-        $this->getFreed();
-        echo"</div>";
+        $str.= Controller::$form->toString();
+        $str.="<div id=gestPivot>";
+        $str.= $this->getAssoc();
+        $str.= $this->getFreed();
+        $str.="</div>";
     }
+    return $str;
 }
 
 /**
@@ -211,9 +216,10 @@ public function getForm()
  */
 public function getAssoc()
 {
+    $str="";
     if (isset($_GET["menu"]) and isset($_GET["id"]) and isset($_SESSION['login'])){
         
-        $this->setTableViewAssoc(
+       $str.= $this->setTableViewAssoc(
         Controller::getOrigin(),
         Controller::getColumn1(),
         Controller::getColumn2(),
@@ -221,6 +227,7 @@ public function getAssoc()
         Controller::getPivot(),
         $_GET["id"]);
     }
+    return $str;
 }
 
 /**
@@ -230,9 +237,10 @@ public function getAssoc()
  */
 public function getFreed()
 {
+    $str="";
     if (isset($_GET["menu"]) and isset($_GET["id"]) and isset($_SESSION['login'])){
         
-        $this->setTableViewFreed(
+        $str.=$this->setTableViewFreed(
         Controller::getOrigin(),
         Controller::getColumn1(),
         Controller::getColumn2(),
@@ -240,7 +248,8 @@ public function getFreed()
         Controller::getPivot(),
         $_GET["id"]);
     }
-    }
+    return $str;
+}
 
     /**
      * Affichage des entrée d'une table en rapport avec le formulaire appelé
@@ -254,7 +263,9 @@ public function getFreed()
         $GEToption = "";
         $title = $menu;
         $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
+        $str="";
         include("view/TableList.php");
+        return $str;
 }
 
     /**
@@ -269,10 +280,12 @@ public function getFreed()
      * @return void
      */
     public function setTableViewAssoc(String $menu,String $column1,String $column2,String $destination,String $pivot, int $idItem){
+        $str="";
         $GEToption = "assoc";
         $title = $destination." lié";
         $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
         include("view/TableList.php");
+        return $str;
 }
 
     /**
@@ -287,15 +300,18 @@ public function getFreed()
      * @return void
      */
     public function setTableViewFreed(String $menu,String $column1,String $column2,String $destination,String $pivot,int $idItem){
+        $str="";
         $GEToption = "freed";
         $title = $destination." non lié";
         $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
         include("view/TableList.php");
+        return $str;
     }
 
     function getConnectedUser(){
+        $str="";
         include("View/ConnexInfo.php");
-        
+        return $str;
     }
 
 }
