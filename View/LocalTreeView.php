@@ -14,4 +14,3 @@ foreach($estaTab as $key => $value){
     }
 }
 $str .= "</ul></li>";
-echo $str;

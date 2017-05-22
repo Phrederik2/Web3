@@ -30,14 +30,46 @@ $menu="";
 }
 else {
 
-    if (isset($_GET["menu"])) {
-        $treemenu= $controller->switchMenu();    
-        $form=$controller->getForm();
-        $section=file_get_contents("Template/tGestSection.html");
-        $section = str_replace("%treemenu%",$treemenu,$section);
-        $section = str_replace("%form%",$form,$section);
+if (isset($_GET)) {
+   foreach ($_GET as $key => $value) {
+      switch ($key) {
+        case 'menu':
+            $treemenu= $controller->switchMenu();    
+            $form=$controller->getForm();
+
+            $section=file_get_contents("Template/tGestSection.html");
+
+            $section = str_replace("%treemenu%",$treemenu,$section);
+            $section = str_replace("%form%",$form,$section);
+            break;
+        case 'schedule':
+            include_once("Controller/ActivityTreeControl.php");
+            include_once("Controller/ScheduleControl.php");
+            include_once("Controller/WeekTreeControl.php");
+            require_once("Controller/LocalTreeControl.php");
+            $section=file_get_contents("Template/tPlanning.html");
+            $activity = new ActivityTree();
+            $schedule = new SceduleControl();
+            $week = new WeekTreeControl();
+            $localTree = new LocalTree();
+            $viewTreeActivity = $activity->toString();
+            $viewSchedule = $schedule->getSchedule();
+            $viewWeek = $week->getWeekList();
+            $viewTreeLocal = $localTree->getLocalTree();
+
+
+            $section = str_replace("%TreeActivity%",$viewTreeActivity,$section);
+            $section = str_replace("%Schedule%",$viewSchedule,$section);
+            $section = str_replace("%Week%",$viewWeek,$section);
+            $section = str_replace("%LocalTree%",$viewTreeLocal,$section);
+            break;
         
+        default:
+            # code...
+            break;
     }
+   }
+}
 
     $user=$controller->getConnectedUser();
     $menu = $controller->getMenu();

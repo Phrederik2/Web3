@@ -73,7 +73,7 @@ class Controller{
     {
        Controller::$menu["User"]=["menu","user","index"]; 
        Controller::$menu["Department"]=["menu","department","index"];
-       Controller::$menu["Schedule"]=[null,null,"schedule"];
+       Controller::$menu["Schedule"]=["schedule","true","index"];
     }
 
     /**

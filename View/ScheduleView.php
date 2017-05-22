@@ -26,5 +26,3 @@ for($i=0;$i<count($slotList)+1;$i++){
 }
 
 $str.= "</div>";
-
-echo $str;

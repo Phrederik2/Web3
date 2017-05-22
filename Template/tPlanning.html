@@ -1,43 +1,20 @@
-<?php
-            include_once("Controller/ActivityTreeControl.php");
-            $activity = new ActivityTree();
-            ?>
+
     <div id="page">
         <div id="activity">
-            <?php 
-                $activity->toString();
-                ?>
+            %TreeActivity%
+           
         </div>
 
         <div id="planning">Planning
-            <?php
-            require_once("Controller/ScheduleControl.php");
-            $schedule = new SceduleControl();
-            $schedule->getSchedule();
-      ?>
+           %Schedule%
         </div>
 
         <div id="list">
             <div id="week">Liste des semaines
-                <?php
-                require_once("Controller/WeekTreeControl.php");
-
-                $week = new WeekTreeControl();
-                $week->getWeekList();
-                //var_dump($week);
-                //echo ($week->getToday());
-                //echo date("Y-m-d");
-            /*for ($i=0; $i < 10; $i++) { 
-              echo "</br>semaine".$i;
-            }*/
-        ?>
+               %Week%
             </div>
             <div id="local">liste locaux
-                <?php
-            require_once("Controller/LocalTreeControl.php");
-            $localTree = new LocalTree();
-            $localTree->getLocalTree();
-        ?>
+               %LocalTree%
             </div>
         </div>
     </div>

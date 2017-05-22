@@ -18,10 +18,9 @@ class LocalTree{
      * @return void
      */
     public  function getLocalTree(){
-
+        $str="";
         $estaTab = $this->dbCo->getEstaEntry();
-        //$localTab = $this->getLocalEntry();
         include("View/LocalTreeView.php");
-
+        return $str;
     }
 }

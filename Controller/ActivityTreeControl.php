@@ -100,7 +100,7 @@ class ActivityTree
      */
     public function toString()
     {
-        echo $this->constructTree();
+        return $this->constructTree();
     }
 
 }
