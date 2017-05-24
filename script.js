@@ -38,7 +38,7 @@ function request(callback,value) {
         }
     };
 
-    xhr.open("GET", "Ajax/ajaxSchedule.php?"+value, true);
+    xhr.open("GET", "index.php?ajax=true&"+value, true);
     xhr.send(null);
 }
 
@@ -48,7 +48,7 @@ function request(callback,value) {
  */
 function check(xhr) {
    
-    document.getElementById("testajax").innerHTML = xhr;
+    document.getElementById("schedule").innerHTML = xhr;
 }
 
 

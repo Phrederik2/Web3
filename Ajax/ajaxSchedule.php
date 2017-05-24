@@ -1,5 +1,5 @@
 <?php
-include_once("../Controller/SessionControl.php");
+include_once("Controller/SessionControl.php");
 $session = new Session();
 
 if (isset($_GET)){
@@ -25,7 +25,9 @@ if (isset($_GET)){
     }
 }
 
-var_dump(Session::getUser());
+ include_once("Controller/ScheduleControl.php");
+ $schedule = new SceduleControl();
+ echo $schedule->getSchedule();
 
 }
 

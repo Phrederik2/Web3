@@ -94,7 +94,7 @@ class DbCo
         $tableList = array();
         
         $Qry = "select id,{$col1},{$col2} from {$table} WHERE IsDelete=0";
-        echo $Qry;
+        //echo $Qry;
         
         $statement = DbCo::$pdo->query($Qry);
         
@@ -354,7 +354,7 @@ class DbCo
         WHERE planning.local = '."'$local'".' and planning.DDATE between '."'$dateStart'".' and '."'$dateEnd'".' AND planning.isdelete=0
         '
         ;
-        echo $query;
+        //echo $query;
         $statement = DbCo::getPDO()->query($query);
         while($item = $statement->fetch(PDO::FETCH_ASSOC)){
             array_push($data,$item);
