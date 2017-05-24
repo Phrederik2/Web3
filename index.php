@@ -5,7 +5,6 @@
  */
 include_once("Controller/SessionControl.php");
 include_once("Controller/ViewControl.php");
-include_once("Controller/SessionControl.php");
 
 /**
  * initialisation

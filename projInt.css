@@ -1,9 +1,11 @@
 body{
     display : flex;
     flex-direction :column;
-    border:1px solid black;
+    border:1px solid red;
     border-radius: 5px;
     background-color: lightgrey;
+    /*width:auto;*/
+    margin: 2%;
 }
 
 header{
@@ -31,14 +33,19 @@ li{
 article{
     display:flex;
     flex-direction:column;
+    border: 1px solid purple;
+    height: auto;
+    width: auto;
 }
 
 #form{
-    margin: 20px;
+    /*margin: 20px;*/
     border:1px black solid;
     background-color: lightgray;
     text-align: center;
     border-radius: 5px;
+    border: 1px solid blue;
+    width: 100%;
 }
 
 
@@ -53,18 +60,17 @@ section{
     background-color: white;
     display : flex;
     flex-direction : row;
+    border: 1px solid green;
     /*border:1px solid black;
     border-radius: 5px;*/
     /*margin: auto;*/
-    margin: 5px;
+    margin-bottom: 0px;
 }
 
 aside{
     border-right:1px solid black;
     background-color: lightgray;
-}
-article{
-    margin: auto;
+    border: 1px solid orange;
 }
 .tableView{
     background-color: white; 
@@ -98,16 +104,16 @@ article{
 #page{
     display: flex;
     flex-direction: row;
-    margin-bottom:10px;
+    /*margin-bottom:10px;*/
     /*height: 100%;*/
-    width: 100%;
-    height: 100%;
+    width: auto;
+    /*height: auto;*/
 }
 
 #activity, #planning, #list{
     margin: 5px;
     padding: 5px;
-    background-color: lightblue;
+    background-color: white;
     border:1px solid black;
 }
 
@@ -118,11 +124,13 @@ article{
 
 #planning{
     width: 50%;
+    background-color: lightblue;
 }
 
 #week,#local{
  border:1px solid black;
  padding: 5px;
  overflow: auto;
- height: 50%;
+ /*height: 50%;*/
+ /*font-size: 9px;*/
  }

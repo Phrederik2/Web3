@@ -23,7 +23,7 @@ function getXMLHttpRequest() {
 }
 
 /**
- * execute l'object XMLHttpRequest, quand reasystate est ok, passe le retour du serveur dans la fonction de callback.
+ * execute l'object XMLHttpRequest, quand readystate est ok, passe le retour du serveur dans la fonction de callback.
  * 
  * @param function callback function a utiliser au retour de l'object XMLHttpRequest
  * @param string value les jeux de clé/valeur a ajouter au _GET
@@ -51,12 +51,25 @@ function check(xhr) {
     document.getElementById("testajax").innerHTML = xhr;
 }
 
-$(document).ready(function(){
 
+
+$(document).ready(function(){
+//JsTree
  $(function () { $('#activity').jstree(); });
  $(function () { $('#local').jstree(); });
  $(function () { $('#test').jstree(); });
 
  $.jstree.defaults.core.themes.variant = "small";
 });
-
+//Tabs
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  //DatePicker
+    $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+//Accordion
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );

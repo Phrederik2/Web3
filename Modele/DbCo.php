@@ -336,12 +336,14 @@ class DbCo
         $user = Session::getUser();
         
         //simulation
-        $user->setLocal(1);
-        $user->setWeek(["2017-04-17","2017-04-23"]);
+        //$user->setLocal(1);
+        //$user->setWeek(["2017-04-17","2017-04-23"]);
 
         $local = $user->getLocal();
-        $dateStart = $user->getWeek()[0];
-        $dateEnd = $user->getWeek()[1];
+        //$dateStart = $user->getWeek()[0];
+        $dateStart = $user->getfirstDay();
+        //$dateEnd = $user->getWeek()[1];
+        $dateEnd = $user->getlastDay();
         $data=Array();
         $query = 
         '
@@ -352,6 +354,7 @@ class DbCo
         WHERE planning.local = '."'$local'".' and planning.DDATE between '."'$dateStart'".' and '."'$dateEnd'".' AND planning.isdelete=0
         '
         ;
+        echo $query;
         $statement = DbCo::getPDO()->query($query);
         while($item = $statement->fetch(PDO::FETCH_ASSOC)){
             array_push($data,$item);

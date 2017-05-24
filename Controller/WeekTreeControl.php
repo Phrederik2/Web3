@@ -1,4 +1,7 @@
 <?php
+
+require_once("Modele/Week.php");
+
 class WeekTreeControl{
     
     //Récupèrer le jour courant en fonction de la date definir date origine avec l'année courante ou précédente
@@ -30,12 +33,16 @@ class WeekTreeControl{
         $parseCheck1 = date_parse($this->check1->format('Y-m-d'));
         $parseCheck2 = date_parse($this->check2->format('Y-m-d'));
         //Si la date le mois de la date du jour est supérieur à au mois de la date d'origine(1) et inférieur à alors l'origine...
-        if($test['month'] > $parseCheck1['month'] and $test['month'] < $parseCheck2['month']){$this->start = ($test['year']-1)."-08-29";echo "start :".$this->start;}
+        if($test['month'] > $parseCheck1['month'] and $test['month'] < $parseCheck2['month']){$this->start = ($test['year']-1)."-08-22";/*echo "start :".$this->start;*/}
         //if($test > $this->check1->format('Y-m-d') and $test < $this->check2->format('Y-m-d')){$this->start = ($test['year']-1)."-08-29";echo "start :".$this->start;}
-        else{$this->start = ($test['year'])."-08-29";echo "start :".$this->start;}
+        else{$this->start = ($test['year'])."-08-22";/*echo "start :".$this->start;*/}
         
         //var_dump($this->start);
         $this->startDate = strtotime($this->start);
+         $this->startDate = strtotime("next monday",$this->startDate);
+
+        //echo "<br/> startDate: ".date('Y-m-d',$this->startDate)."<br/>";
+
         //echo "<br/> startDate: ".date('D',$this->startDate)."<br/>";
         //var_dump($this->startDate);
         // echo "next monday: ".date('Y-m-d',strtotime("next monday",$this->startDate));
@@ -48,7 +55,15 @@ class WeekTreeControl{
     private function weekListInit(){
         $weekList = array();
         for($i=0;$i<52;$i++){
-            $weekList[date('W',$this->startDate)] = date('Y-m-d',$this->startDate);//$this->start;
+            $week = new Week();
+            $week->setMon(date('Y-m-d',$this->startDate));
+            $week->setTue(date('Y-m-d',strtotime("+1 day",$this->startDate)));
+            $week->setWed(date('Y-m-d',strtotime("+2 day",$this->startDate)));
+            $week->setThu(date('Y-m-d',strtotime("+3 day",$this->startDate)));
+            $week->setFri(date('Y-m-d',strtotime("+4 day",$this->startDate)));
+            $week->setSat(date('Y-m-d',strtotime("+5 day",$this->startDate)));
+            $week->setSun(date('Y-m-d',strtotime("+6 day",$this->startDate)));
+            $weekList[date('W',$this->startDate)] = $week;//date('Y-m-d',$this->startDate);//$this->start;
             $this->startDate = strtotime("next monday",$this->startDate);
         }
         return $weekList;
