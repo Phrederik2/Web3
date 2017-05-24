@@ -362,4 +362,28 @@ class DbCo
 
         return $data;
     }
+    static function addToSchedule($sha1)
+    {
+        if (isset($_SESSION["cells"])) {
+            $cells=unserialize($_SESSION["cells"]);
+            var_dump(Session::getUser());
+            $query = 
+            "
+            INSERT INTO planning (ddate,activity,slot,user,local,istemporary,isdelete) 
+            VALUES (
+                '{$cells[$sha1]["date"]}',
+                ".Session::getUser()->getActivity().",
+                {$cells[$sha1]["slot"]},
+                ".Session::getUser()->getId().",
+                {$cells[$sha1]["local"]},
+                0,
+                0,
+                )
+            "
+            ;
+            var_dump($query);
+            $statement = DbCo::getPDO()->query($query);
+        }
+              
+    }
 }

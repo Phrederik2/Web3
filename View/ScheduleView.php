@@ -1,4 +1,6 @@
 <?php
+$user= new Session();
+$Cells= array();
 $str= "<div id = \"ScheduleTab\">";
 for($i=0;$i<count($slotList)+1;$i++){
 
@@ -14,7 +16,18 @@ for($i=0;$i<count($slotList)+1;$i++){
         }
         else {
             if ($i and $j){
-                $str.= "<div class=\"cell\">".$this->searchActivity($slotList[$i-1]["id"],$week[$j-1])."</div>";
+                /**
+                 * Création list en session et codage onclick
+                 */
+                
+                 $tmp=array();
+                 $tmp["date"]=Session::getUser()->getFirstDay();
+                 $tmp["slot"]=$slotList[$i-1]["id"];
+                 $tmp["local"]=session::getUser()->getLocal();
+                 $sha1=sha1(serialize($tmp));
+                 $Cells[$sha1]=$tmp;
+
+                $str.= "<div onclick=\"request(check,'cell=".$sha1."')\" class=\"cell\">".$this->searchActivity($slotList[$i-1]["id"],$week[$j-1])."</div>";
             }
             else {
                 $str.= "<div class=\"cell\"></div>";
@@ -24,5 +37,7 @@ for($i=0;$i<count($slotList)+1;$i++){
         
     $str.= "</div>";
 }
+
+$_SESSION["cells"]=serialize($Cells);
 
 $str.= "</div>";

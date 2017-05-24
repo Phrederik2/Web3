@@ -79,7 +79,7 @@ class Session
      */
     public function saveSession()
     {
-          $_SESSION['login'] = serialize(Session::$user);
+          $_SESSION['login'] = serialize(Session::getUser());
     }
 
     static function getUser(){return Session::$user;}

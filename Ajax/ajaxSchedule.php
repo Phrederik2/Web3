@@ -8,6 +8,7 @@ if (isset($_GET)){
         switch ($key) {
             case 'activity':
                 Session::getUser()->setActivity($value);
+                var_dump( Session::getUser());
                 break;
             case 'localId':
                 Session::getUser()->setLocal($value);
@@ -17,6 +18,9 @@ if (isset($_GET)){
                 break;
             case 'lastDay':
                 Session::getUser()->setLastDay($value);
+                break;
+            case 'cell':
+                DbCo::addToSchedule($value);
                 break;
             
             default:

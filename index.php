@@ -38,7 +38,6 @@ if (!isset($ajax)) {
     session_start();
         $session = new Session();
         $controller = new Controller();
-        $controller->setForm();
 
     if (Session::getUser()==null){
         $section=Session::showSession();
@@ -49,6 +48,7 @@ if (!isset($ajax)) {
     foreach ($_GET as $key => $value) {
         switch ($key) {
             case 'menu':
+                $controller->setForm();
                 $treemenu= $controller->switchMenu();    
                 $form=$controller->getForm();
 
