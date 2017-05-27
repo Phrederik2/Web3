@@ -72,11 +72,13 @@ if (!isset($ajax)) {
                 $viewSchedule = $schedule->getSchedule();
                 $viewWeek = $week->getWeekList();
                 $viewTreeLocal = $localTree->getLocalTree();
+                $crtSetting = $schedule->getCrtSetting();
 
                 $section = str_replace("%TreeActivity%",$viewTreeActivity,$section);
                 $section = str_replace("%Schedule%",$viewSchedule,$section);
                 $section = str_replace("%Week%",$viewWeek,$section);
                 $section = str_replace("%LocalTree%",$viewTreeLocal,$section);
+                $section = str_replace('%crtSetting%',$crtSetting,$section);
                 break;
             
             default:

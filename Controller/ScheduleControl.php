@@ -45,4 +45,9 @@ class SceduleControl{
        return $str;
     }
 
+    public function getCrtSetting(){
+        include("View/CrtSettingView.php");
+        //return $str;
+    }
+
 }

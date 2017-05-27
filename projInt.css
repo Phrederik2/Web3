@@ -134,3 +134,9 @@ aside{
  /*height: 50%;*/
  /*font-size: 9px;*/
  }
+
+#crtSetting{
+    display: flex;
+    flex-direction: row;
+    margin:auto;
+}
