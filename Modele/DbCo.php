@@ -334,16 +334,12 @@ class DbCo
     static function getCellPlanning()
     {
         $user = Session::getUser();
-        
-        //simulation
-        //$user->setLocal(1);
-        //$user->setWeek(["2017-04-17","2017-04-23"]);
 
         $local = $user->getLocal();
-        //$dateStart = $user->getWeek()[0];
         $dateStart = $user->getfirstDay();
-        //$dateEnd = $user->getWeek()[1];
+        $dateStart = str_replace("/","-",$dateStart);
         $dateEnd = $user->getlastDay();
+        $dateEnd = str_replace("/","-",$dateEnd);        
         $data=Array();
         $query = 
         '
@@ -364,25 +360,29 @@ class DbCo
     }
     static function addToSchedule($sha1)
     {
-        if (isset($_SESSION["cells"])) {
+        if (isset($_SESSION["cells"]) and Session::getUser()->getActivity()>null  ) {
             $cells=unserialize($_SESSION["cells"]);
-            var_dump(Session::getUser());
-            $query = 
-            "
-            INSERT INTO planning (ddate,activity,slot,user,local,istemporary,isdelete) 
-            VALUES (
-                '{$cells[$sha1]["date"]}',
-                ".Session::getUser()->getActivity().",
-                {$cells[$sha1]["slot"]},
-                ".Session::getUser()->getId().",
-                {$cells[$sha1]["local"]},
-                0,
-                0
-                )
-            "
-            ;
-            var_dump($query);
-            $statement = DbCo::getPDO()->query($query);
+            if ($cells[$sha1]["local"]>0){
+
+                //var_dump(Session::getUser());
+                $ddate=str_replace("/","-",$cells[$sha1]["date"]);
+                $query = 
+                "
+                INSERT INTO planning (ddate,activity,slot,user,local,istemporary,isdelete) 
+                VALUES (
+                    '{$ddate}',
+                    ".Session::getUser()->getActivity().",
+                    {$cells[$sha1]["slot"]},
+                    ".Session::getUser()->getId().",
+                    {$cells[$sha1]["local"]},
+                    0,
+                    0
+                    )
+                "
+                ;
+                var_dump($query);
+                $statement = DbCo::getPDO()->query($query);
+            }
         }
               
     }

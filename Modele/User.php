@@ -58,11 +58,12 @@ class User extends Primary{
 
         $this->setLastDay(DateTool::moveDay($this->getFirstDay(),+7));
 
+        $this->listDay=[];
+
         for ($i=0; $i < 7 ; $i++) { 
             $this->listDay[] = DateTool::moveDay($this->getFirstDay(),$i);
         }
 
-        $this->listDay=[];
 
         $this->timestamp= $timestamp;
         Session::saveSession();

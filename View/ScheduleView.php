@@ -16,7 +16,9 @@ for($i=0;$i<count($slotList)+1;$i++){
             $str.= "<div class=\"cell\">".$slotList[$i-1]["start"]."</div>";
         }
         else if($i==0 and $j>=1){
-            $str.= "<div class=\"cell\">".$dayList[$j-1]."</div>";
+            $str.= "<div class=\"cell\">".$dayList[$j-1];
+            if (isset($week[$j-1])) $str.= "</br>".$week[$j-1];
+            $str.= "</div>";
         }
         else {
             if ($i and $j){
@@ -25,13 +27,13 @@ for($i=0;$i<count($slotList)+1;$i++){
                  */
                 
                  $tmp=array();
-                 $tmp["date"]=Session::getUser()->getFirstDay();
+                 $tmp["date"]=$week[$j-1];
                  $tmp["slot"]=$slotList[$i-1]["id"];
                  $tmp["local"]=session::getUser()->getLocal();
                  $sha1=sha1(serialize($tmp));
                  $Cells[$sha1]=$tmp;
 
-                $str.= "<div onclick=\"request(check,'cell=".$sha1."')\" class=\"cell\">".$this->searchActivity($slotList[$i-1]["id"],$week[$j-1])."</div>";
+                if (isset($week[$j-1])) $str.= "<div onclick=\"request(check,'cell=".$sha1."')\" class=\"cell\">".$this->searchActivity($slotList[$i-1]["id"],$week[$j-1])."</div>";
             }
             else {
                 $str.= "<div class=\"cell\"></div>";

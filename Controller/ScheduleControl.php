@@ -36,7 +36,8 @@ class SceduleControl{
     {
         $str="";
        foreach ($this->data as $item) {
-           if ($item["DDATE"]==$date AND $item["SLOT"]==$slot){
+           $t = str_replace("-","/",$item["DDATE"]);
+           if (str_replace("-","/",$item["DDATE"])==$date AND $item["SLOT"]==$slot){
                if (strlen($str)>0)$str.= "</br>";
                $str.= "<a href\"#\">".$item["TITLE"] ." (".$item["CODE"].")</a>";
            }
