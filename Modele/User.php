@@ -41,7 +41,7 @@ class User extends Primary{
     function getTimestamp(){return $this->timestamp;}
     function setTimestamp($timestamp){
         
-        $date=date('Y/m/d',$timestamp/1000);
+        $date=date('Y/m/d G:i',$timestamp/1000);
     
         
         $this->timestamp= $timestamp;}

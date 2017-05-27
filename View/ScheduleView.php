@@ -1,9 +1,11 @@
 <?php
-$test= session::getUser()->getLocal();
+$local= session::getUser()->getLocal();
+$firstDay = session::getUser()->getFirstDay();
+$activity = session::getUser()->getActivity();
 
 $Cells= array();
 $str= "<div id = \"ScheduleTab\">";
-$str .= "<div>Date: </div><div>Local: $test</div><div>Activitée: </div>";
+$str .= "<div>Date: $firstDay</div><div>Local: $local</div><div>Activitée: $activity</div>";
 for($i=0;$i<count($slotList)+1;$i++){
 
     $str.= "<div class=\"row\">";
