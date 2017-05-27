@@ -3,6 +3,7 @@
 /**
  * Inclusion
  */
+ 
 if (isset($_GET)){
     foreach ($_GET as $key => $value) {
         switch ($key) {
@@ -35,7 +36,7 @@ if (!isset($ajax)) {
     /**
      * Verification
      */
-    session_start();
+   
         $session = new Session();
         $controller = new Controller();
 

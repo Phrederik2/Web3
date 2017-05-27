@@ -1,5 +1,5 @@
 <?php
-$user= new Session();
+
 $Cells= array();
 $str= "<div id = \"ScheduleTab\">";
 for($i=0;$i<count($slotList)+1;$i++){

@@ -377,7 +377,7 @@ class DbCo
                 ".Session::getUser()->getId().",
                 {$cells[$sha1]["local"]},
                 0,
-                0,
+                0
                 )
             "
             ;

@@ -12,12 +12,15 @@ if (isset($_GET)){
                 break;
             case 'localId':
                 Session::getUser()->setLocal($value);
+                 var_dump( Session::getUser());
                 break;
             case 'firstDay':
                 Session::getUser()->setfirstDay($value);
+                 var_dump( Session::getUser());
                 break;
             case 'lastDay':
                 Session::getUser()->setLastDay($value);
+                 var_dump( Session::getUser());
                 break;
             case 'cell':
                 DbCo::addToSchedule($value);
