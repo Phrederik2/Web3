@@ -82,8 +82,8 @@ $("#datepicker").datepicker({
         return;
       }
       else{
-        var selDate = new Date(date.getFullYear(),date.getMonth(),date.getDay());
-        alert(selDate.toString());
+        var selDate = date.valueOf();
+        alert(selDate);
       }
 
    }
