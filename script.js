@@ -2,24 +2,24 @@
  * retourne l'object XMLHttpRequest si il est instanciable
  */
 function getXMLHttpRequest() {
-	var xhr = null;
-	
-	if (window.XMLHttpRequest || window.ActiveXObject) {
-		if (window.ActiveXObject) {
-			try {
-				xhr = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch(e) {
-				xhr = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-		} else {
-			xhr = new XMLHttpRequest(); 
-		}
-	} else {
-		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
-		return null;
-	}
-	
-	return xhr;
+  var xhr = null;
+
+  if (window.XMLHttpRequest || window.ActiveXObject) {
+    if (window.ActiveXObject) {
+      try {
+        xhr = new ActiveXObject("Msxml2.XMLHTTP");
+      } catch (e) {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    } else {
+      xhr = new XMLHttpRequest();
+    }
+  } else {
+    alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+    return null;
+  }
+
+  return xhr;
 }
 
 /**
@@ -28,18 +28,18 @@ function getXMLHttpRequest() {
  * @param function callback function a utiliser au retour de l'object XMLHttpRequest
  * @param string value les jeux de clé/valeur a ajouter au _GET
  */
-function request(callback,value) {
+function request(callback, value) {
 
-    var xhr = getXMLHttpRequest();
+  var xhr = getXMLHttpRequest();
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-            callback(xhr.responseText);
-        }
-    };
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+      callback(xhr.responseText);
+    }
+  };
 
-    xhr.open("GET", "index.php?ajax=true&"+value, true);
-    xhr.send(null);
+  xhr.open("GET", "index.php?ajax=true&" + value, true);
+  xhr.send(null);
 }
 
 /**
@@ -47,29 +47,51 @@ function request(callback,value) {
  * @param String xhr 
  */
 function check(xhr) {
-   
-    document.getElementById("schedule").innerHTML = xhr;
+
+  document.getElementById("schedule").innerHTML = xhr;
 }
 
 
 
-$(document).ready(function(){
-//JsTree
- $(function () { $('#activity').jstree(); });
- $(function () { $('#local').jstree(); });
- $(function () { $('#test').jstree(); });
+$(document).ready(function () {
+  //JsTree
+  $(function () { $('#activity').jstree(); });
+  $(function () { $('#local').jstree(); });
+  $(function () { $('#test').jstree(); });
 
- $.jstree.defaults.core.themes.variant = "small";
+  $.jstree.defaults.core.themes.variant = "small";
 });
 //Tabs
-  $( function() {
-    $( "#tabs" ).tabs();
-  } );
-  //DatePicker
-    $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
+$(function () {
+  $("#tabs").tabs();
+});
+//DatePicker
+$(function () {
+  $("#datepicker").datepicker();
+});
 //Accordion
-  $( function() {
-    $( "#accordion" ).accordion();
-  } );
+$(function () {
+  $("#accordion").accordion();
+});
+
+
+
+function addListener() {
+
+  $(".ui-state-default").click(function () {
+    var ddate = $("#datePicker").val();
+    alert(ddate);
+    /*datepicker({ dateFormat: 'YYYY,MM,dd' }).val();
+    alert(date);*/
+    // var date=$("#datePicker").datepicker("getDate");
+    // var test = date.getDate();
+    // alert(test);
+  })
+}
+
+// $("#datepicker").datepicker({
+//    onSelect: function(dateText, inst) { 
+//       var dateAsString = dateText; //the first parameter of this function
+//       var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+//    }
+// });
