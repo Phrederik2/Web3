@@ -354,7 +354,7 @@ class DbCo
         WHERE planning.local = '."'$local'".' and planning.DDATE between '."'$dateStart'".' and '."'$dateEnd'".' AND planning.isdelete=0
         '
         ;
-        //echo $query;
+        echo $query;
         $statement = DbCo::getPDO()->query($query);
         while($item = $statement->fetch(PDO::FETCH_ASSOC)){
             array_push($data,$item);

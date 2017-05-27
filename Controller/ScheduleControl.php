@@ -27,7 +27,7 @@ class SceduleControl{
         $str="";
         $slotList = $this->dbCo->getSlot();
         $dayList = $this->dbCo->getDay();
-        $week=["2017-04-17","2017-04-18","2017-04-19","2017-04-20","2017-04-21"];
+        $week=Session::getUser()->getListDay();
         include_once("View/ScheduleView.php");
         return $str;
     }

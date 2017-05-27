@@ -77,7 +77,7 @@ class Session
      *
      * @return void
      */
-    public function saveSession()
+    static public function saveSession()
     {
           $_SESSION['login'] = serialize(Session::getUser());
     }

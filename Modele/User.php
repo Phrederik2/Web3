@@ -39,20 +39,34 @@ class User extends Primary{
     function setLastDay($lastDay){$this->lastDay= $lastDay;}
     function getLocal(){return $this->local;}
     function setLocal($local){$this->local= $local;}
+    function getListDay(){return $this->listDay;}
+    function setListDay($listDay){$this->listDay= $listDay;}
     function getTimestamp(){return $this->timestamp;}
     function setTimestamp($timestamp){
 
         date_default_timezone_set("Europe/Paris");
+
         $date=date('Y/m/d',($timestamp/1000));
         $jour = date("w",strtotime($date));
-        $this->setFirstDay(DateTool::moveDay($date,-($jour)));
+
+        if ($jour){
+            $this->setFirstDay(DateTool::moveDay($date,-($jour-1)));
+        }
+        else{
+            $this->setFirstDay($date);
+        }
+
         $this->setLastDay(DateTool::moveDay($this->getFirstDay(),+7));
-        $this->listDay=[];
 
         for ($i=0; $i < 7 ; $i++) { 
             $this->listDay[] = DateTool::moveDay($this->getFirstDay(),$i);
         }
+
+        $this->listDay=[];
+
         $this->timestamp= $timestamp;
+        Session::saveSession();
     }
+
 
 }
