@@ -41,6 +41,7 @@ class User extends Primary{
     function setLocal($local){$this->local= $local;}
     function getTimestamp(){return $this->timestamp;}
     function setTimestamp($timestamp){
+
         date_default_timezone_set("Europe/Paris");
         $date=date('Y/m/d',($timestamp/1000));
         $jour = date("w",strtotime($date));
@@ -51,9 +52,7 @@ class User extends Primary{
         for ($i=0; $i < 7 ; $i++) { 
             $this->listDay[] = DateTool::moveDay($this->getFirstDay(),$i);
         }
-        var_dump($this);
         $this->timestamp= $timestamp;
     }
-
 
 }
