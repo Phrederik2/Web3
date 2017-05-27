@@ -74,24 +74,18 @@ $(function () {
   $("#accordion").accordion();
 });
 
+$("#datepicker").datepicker({
+   onSelect: function(dateText, inst) { 
+      var date = $(this).datepicker( 'getDate' ); //the getDate method
+      
+      if(date == null){
+        return;
+      }
+      else{
+        var selDate = new Date(date.getFullYear(),date.getMonth(),date.getDay());
+        alert(selDate.toString());
+      }
 
+   }
+});
 
-function addListener() {
-
-  $(".ui-state-default").click(function () {
-    var ddate = $("#datePicker").val();
-    alert(ddate);
-    /*datepicker({ dateFormat: 'YYYY,MM,dd' }).val();
-    alert(date);*/
-    // var date=$("#datePicker").datepicker("getDate");
-    // var test = date.getDate();
-    // alert(test);
-  })
-}
-
-// $("#datepicker").datepicker({
-//    onSelect: function(dateText, inst) { 
-//       var dateAsString = dateText; //the first parameter of this function
-//       var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
-//    }
-// });
