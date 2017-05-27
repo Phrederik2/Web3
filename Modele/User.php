@@ -14,6 +14,7 @@ class User extends Primary{
     private $local=null;
     private $firstDay=null;
     private $lastDay=null;
+    private $timestamp=null;
     
     function __construct($id,$firstName,$lastName,$isAdmin){
         parent::__construct($id,$isAdmin);
@@ -37,6 +38,17 @@ class User extends Primary{
     function setLastDay($lastDay){$this->lastDay= $lastDay;}
     function getLocal(){return $this->local;}
     function setLocal($local){$this->local= $local;}
+    function getTimestamp(){return $this->timestamp;}
+    function setTimestamp($timestamp){
+        $timestamp=$timestamp/1000;
+        $date=null;
+        $date=date("Y/m/d",strtotime("2017/05/27"));
+        $date=date("Y/m/d",$timestamp);
+        $date= date(DATE_RFC2822);
+        $date=time();
+        
+        $this->timestamp= $timestamp;}
+
 
     
     

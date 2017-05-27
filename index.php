@@ -4,8 +4,8 @@
  * Inclusion
  */
  
-if (isset($_GET)){
-    foreach ($_GET as $key => $value) {
+if (isset($_POST)){
+    foreach ($_POST as $key => $value) {
         switch ($key) {
             case "ajax":
                 $ajax=true;

@@ -38,8 +38,9 @@ function request(callback, value) {
     }
   };
 
-  xhr.open("GET", "index.php?ajax=true&" + value, true);
-  xhr.send(null);
+  xhr.open("POST", "index.php", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("ajax=true&" + value);
 }
 
 /**
@@ -83,7 +84,8 @@ $("#datepicker").datepicker({
       }
       else{
         var selDate = date.valueOf();
-        alert(selDate);
+        request(check,"timestamp="+selDate);
+
       }
 
    }
