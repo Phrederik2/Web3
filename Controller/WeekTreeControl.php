@@ -51,7 +51,7 @@ class WeekTreeControl{
     
     public function getToday(){return $this->today;}
     public function getStartDate(){return $this->startDate;}
-    public function setStartDate($startDate){$this->startDate = $startDate;}
+    //public function setStartDate($startDate){$this->startDate = $startDate;}
     
     private function weekListInit(){
         $weekList = array();
