@@ -40,12 +40,9 @@ class User extends Primary{
     function setLocal($local){$this->local= $local;}
     function getTimestamp(){return $this->timestamp;}
     function setTimestamp($timestamp){
-        $timestamp=$timestamp/1000;
-        $date=null;
-        $date=date("Y/m/d",strtotime("2017/05/27"));
-        $date=date("Y/m/d",$timestamp);
-        $date= date(DATE_RFC2822);
-        $date=time();
+        
+        $date=date('Y/m/d',$timestamp/1000);
+    
         
         $this->timestamp= $timestamp;}
 
