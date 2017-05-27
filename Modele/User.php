@@ -1,6 +1,6 @@
 <?php
 include_once("Modele/Primary.php");
-
+include_once("Tool/Date.php");
 
 class User extends Primary{
     
@@ -15,6 +15,7 @@ class User extends Primary{
     private $firstDay=null;
     private $lastDay=null;
     private $timestamp=null;
+    private $listDay=[];
     
     function __construct($id,$firstName,$lastName,$isAdmin){
         parent::__construct($id,$isAdmin);
@@ -32,7 +33,7 @@ class User extends Primary{
     function setActivity($activity){$this->activity= $activity;}
     function getWeek(){return $this->week;}
     function setWeek($week){$this->week= $week;}
-    function getfirstDay(){return $this->firstDay;}
+    function getFirstDay(){return $this->firstDay;}
     function setFirstDay($firstDay){$this->firstDay= $firstDay;}
     function getLastDay(){return $this->lastDay;}
     function setLastDay($lastDay){$this->lastDay= $lastDay;}
@@ -40,13 +41,19 @@ class User extends Primary{
     function setLocal($local){$this->local= $local;}
     function getTimestamp(){return $this->timestamp;}
     function setTimestamp($timestamp){
-        
-        $date=date('Y/m/d',$timestamp/1000);
-    
-        
-        $this->timestamp= $timestamp;}
+        date_default_timezone_set("Europe/Paris");
+        $date=date('Y/m/d',($timestamp/1000));
+        $jour = date("w",strtotime($date));
+        $this->setFirstDay(DateTool::moveDay($date,-($jour)));
+        $this->setLastDay(DateTool::moveDay($this->getFirstDay(),+7));
+        $this->listDay=[];
+
+        for ($i=0; $i < 7 ; $i++) { 
+            $this->listDay[] = DateTool::moveDay($this->getFirstDay(),$i);
+        }
+        var_dump($this);
+        $this->timestamp= $timestamp;
+    }
 
 
-    
-    
 }
