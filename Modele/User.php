@@ -6,9 +6,9 @@ class User extends Primary{
     
     private $firstName = "";
     private $lastName = "";
-
+    
     // Variable d'environement (Planning)
-
+    
     private $activity=null;
     private $week=null;
     private $local=null;
@@ -21,6 +21,7 @@ class User extends Primary{
         parent::__construct($id,$isAdmin);
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
+        $this->setTimestamp(time()*1000);
     }
     
     function getFirstName(){return $this->firstName;}
@@ -43,31 +44,31 @@ class User extends Primary{
     function setListDay($listDay){$this->listDay= $listDay;}
     function getTimestamp(){return $this->timestamp;}
     function setTimestamp($timestamp){
-
+        
         date_default_timezone_set("Europe/Paris");
-
+        
         $date=date('Y/m/d',($timestamp/1000));
         $jour = date("w",strtotime($date));
-
+        
         if ($jour){
             $this->setFirstDay(DateTool::moveDay($date,-($jour-1)));
         }
         else{
             $this->setFirstDay($date);
         }
-
+        
         $this->setLastDay(DateTool::moveDay($this->getFirstDay(),+7));
-
+        
         $this->listDay=[];
-
-        for ($i=0; $i < 7 ; $i++) { 
+        
+        for ($i=0; $i < 7 ; $i++) {
             $this->listDay[] = DateTool::moveDay($this->getFirstDay(),$i);
         }
-
-
+        
+        
         $this->timestamp= $timestamp;
         Session::saveSession();
     }
-
-
+    
+    
 }
