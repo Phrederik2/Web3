@@ -8,6 +8,8 @@ class SceduleControl{
 
     private $dbCo;
     private $data;
+    private $cells= array();
+    private $cellsItem=array();
 
     public function __construct(){
         $this->dbCo = new DbCo();
@@ -38,8 +40,14 @@ class SceduleControl{
        foreach ($this->data as $item) {
            $t = str_replace("-","/",$item["DDATE"]);
            if (str_replace("-","/",$item["DDATE"])==$date AND $item["SLOT"]==$slot){
-               if (strlen($str)>0)$str.= "</br>";
-               $str.= "<a href\"#\">".$item["TITLE"] ." (".$item["CODE"].")</a>";
+                if (strlen($str)>0)$str.= "</br>";
+
+                $tmp["id"] = $item["ID"];
+                $sha1=sha1(serialize($tmp));
+                $this->cellsItem[$sha1]=$tmp; 
+
+                $onclick= "onclick=\"request(check,'removeCell=".$sha1."')\"";
+                $str.= "<a $onclick href=\"#\">".$item["TITLE"] ." (".$item["CODE"].")</a>";
            }
        }
 
@@ -50,5 +58,16 @@ class SceduleControl{
         include("View/CrtSettingView.php");
         //return $str;
     }
+
+    public function resumeCache()
+    {
+        
+    }
+    public function saveCache()
+    {
+        $_SESSION["cells"]=serialize($this->cells);
+        $_SESSION["cellsItem"]=serialize($this->cellsItem);
+    }
+
 
 }

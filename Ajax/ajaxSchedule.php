@@ -21,9 +21,13 @@ if (isset($_POST)){
             case 'cell':
                 DbCo::addToSchedule($value);
                 break;
+            case 'removeCell':
+                 DbCo::removeToSchedule($value);
+                break;
             case 'timestamp':
                  Session::getUser()->setTimestamp($value);
                 break;
+            
             
             default:
                 # code...

@@ -350,7 +350,7 @@ class DbCo
         WHERE planning.local = '."'$local'".' and planning.DDATE between '."'$dateStart'".' and '."'$dateEnd'".' AND planning.isdelete=0
         '
         ;
-        echo $query;
+        //echo $query;
         $statement = DbCo::getPDO()->query($query);
         while($item = $statement->fetch(PDO::FETCH_ASSOC)){
             array_push($data,$item);
@@ -362,7 +362,7 @@ class DbCo
     {
         if (isset($_SESSION["cells"]) and Session::getUser()->getActivity()>null  ) {
             $cells=unserialize($_SESSION["cells"]);
-            if ($cells[$sha1]["local"]>0){
+            if ($cells[$sha1]["local"]>0 and strlen($cells[$sha1]["item"])==0){
 
                 //var_dump(Session::getUser());
                 $ddate=str_replace("/","-",$cells[$sha1]["date"]);
@@ -380,9 +380,27 @@ class DbCo
                     )
                 "
                 ;
-                var_dump($query);
+                //var_dump($query);
                 $statement = DbCo::getPDO()->query($query);
             }
+        }
+              
+    }
+
+    static function removeToSchedule($sha1)
+    {
+        if (isset($_SESSION["cellsItem"]) ) {
+            $cellsItem=unserialize($_SESSION["cellsItem"]);
+           
+            $id = $cellsItem[$sha1]["id"];
+            $query = 
+            "
+            DELETE FROM planning WHERE id='".$id."';
+            "
+                ;
+                //var_dump($query);
+                $statement = DbCo::getPDO()->query($query);
+            
         }
               
     }
