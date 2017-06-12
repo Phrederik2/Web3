@@ -12,10 +12,7 @@ if (isset($_POST)){
             case 'localId':
                 Session::getUser()->setLocal($value);
                 break;
-            case 'firstDay':
-                Session::getUser()->setfirstDay($value);
-                break;
-            case 'lastDay':
+            
                 Session::getUser()->setLastDay($value);
                 break;
             case 'cell':
@@ -24,7 +21,7 @@ if (isset($_POST)){
             case 'removeCell':
                  DbCo::removeToSchedule($value);
                 break;
-            case 'timestamp':
+            case 'timestamp' or 'week':
                  Session::getUser()->setTimestamp($value);
                 break;
             
