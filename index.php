@@ -10,6 +10,7 @@ if (isset($_POST)){
             case "ajax":
                 $ajax=true;
                 include_once("Ajax/ajaxSchedule.php");
+                $ajax = new AjaxControl();
                 break;
             
             default:
@@ -50,7 +51,7 @@ if (!isset($ajax)) {
         switch ($key) {
             case 'menu':
                 $controller->setForm();
-                $treemenu= $controller->switchMenu();    
+                $treemenu= $controller->switchMenu(); 
                 $form=$controller->getForm();
 
                 $section=file_get_contents("Template/tGestSection.html");

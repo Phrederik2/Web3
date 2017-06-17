@@ -71,7 +71,10 @@ class Controller{
      */
     private function setMenu()
     {
-       Controller::$menu["User"]=["menu","user","index"]; 
+        $user = Session::getUser();
+        if($user != null and $user->getIsAdmin()==true){
+            Controller::$menu["User"]=["menu","user","index"]; 
+        }
        Controller::$menu["Department"]=["menu","department","index"];
        Controller::$menu["Ressource"]=["menu","resource","index"];
        Controller::$menu["Schedule"]=["schedule","true","index"];
@@ -101,7 +104,7 @@ class Controller{
         if (!isset($_GET["menu"]))return;
         switch ($_GET["menu"]) {
             
-            case 'user':
+            case $_GET["menu"]=='user' and Session::getUser()!=null and Session::getUser()->getIsAdmin()==true:
                 $this->setView("firstname","lastname","user","manage","department","title","code","view/UserView.php");
                 break;
             case 'department':
@@ -186,7 +189,7 @@ private function setView(string $listColumn1,string $listColumn2,string $origin,
  * @return void
  */
 public function setForm(){
-    if (isset($_GET["menu"])){
+    if (isset($_GET["menu"]) and Controller::getviewPath()!=""){
         include(Controller::getviewPath());
         
     }
@@ -261,11 +264,14 @@ public function getFreed()
      * @return void
      */
     public function getTableView(String $menu,String $column1,String $column2){
-        $GEToption = "";
-        $title = $menu;
-        $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
         $str="";
-        include("view/TableList.php");
+        
+        if ($column1!="" and $column2!=""){
+            $GEToption = "";
+            $title = $menu;
+            $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
+            include("view/TableList.php");
+        }
         return $str;
 }
 

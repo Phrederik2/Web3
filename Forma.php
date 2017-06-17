@@ -627,7 +627,7 @@ class Checkbox extends Input {
 				$this->setValue ( $this->falseValue );
 		}
 		if ($this->getValue () == $this->trueValue)
-			return "checked";
+			return " checked ";
 	}
 
 	/**
@@ -647,7 +647,7 @@ class Checkbox extends Input {
 		$str = "<" . $this->getParent()->getStyleOfLabeling () . " for=\"" . $this->getName () . "\">" . $this->getLabel () . "<input type=\"" . $this->getType () . "\"";
 		$str .= $this->showName ();
 		$str .= $this->showValue ();
-		$str .= $this->getChecked ();
+		$str .= $this->getChecked () . ">";
 		$str .= "</" . $this->getParent()->getStyleOfLabeling () . ">";
 		return $str;
 	}
@@ -713,6 +713,7 @@ class Form {
 	private $showTitle = true;
 	private $styleOfLabeling = "legend";
 	private $toString = "";
+	private $FormOptionSubmit=null;
 	
 	/**
 	 * Constructeur de la 
@@ -768,6 +769,15 @@ class Form {
 	function setTitleChild($titleChild) {$this->titleChild = $titleChild;}
 	function getStyleOfLabeling() {return $this->styleOfLabeling;}
 	function setStyleOfLabeling($styleOfLabeling) {$this->styleOfLabeling = $styleOfLabeling;}
+	function getFormOptionSubmit(){
+		$str="";
+		if ($this->FormOptionSubmit!=null){
+			$str.= "action=\"$this->FormOptionSubmit\" ";
+		}
+		return $str;
+		}
+
+	function setFormOptionSubmit($FormOptionSubmit){$this->FormOptionSubmit= $FormOptionSubmit;}
 	
 	/**
 	 * Crée un binding avec la base de donnée et flag Bind comme True (important car le tout les elements peuvent etre disponible sans forcement vouloir un binding réel)
@@ -921,6 +931,8 @@ class Form {
 			if ($statement->rowCount () > 0) {
 				foreach ( $this->list as $item ) {
 					foreach ( $array as $key => $value ) {
+						/*var_dump (strtoupper ( $item->getSimpleName () ));
+						var_dump (strtoupper ( $key ));*/
 						if (strtoupper ( $item->getSimpleName () ) == strtoupper ( $key ))
 							$item->setValue ( $value );
 					}
@@ -966,7 +978,7 @@ class Form {
 		$this->bindValue ();
 		$str = $this->showFieldset ();
 		$str .= $this->showTitle ();
-		$str .= "<Form action=\"".$_SERVER['SCRIPT_NAME']."\" method=\"POST\">";
+		$str .= "<Form {$this->getFormOptionSubmit()} method=\"POST\">";
 		
 		// pour tout les elements de la liste, l'affiche et verifie le regex, si non conforme affiche l'erreur en dessous du champ
 		foreach ( $this->list as $tmp ) {
@@ -997,6 +1009,8 @@ class Form {
 		if ($this->getIsFieldSet () == 1)
 			$str .= "</fieldset>";
 		$this->toString = $str;
+
+		$this->saveFormInSession();
 	}
 
 function toString()
@@ -1129,6 +1143,16 @@ function toString()
 		}
 	}
 
+	private function saveFormInSession()
+	{
+		if (!isset($_SESSION["Forma::"])) {
+			$_SESSION["Forma::"]=array();
+		}
+		if (isset($_SESSION["Forma::"])) {
+			//$_SESSION["Forma::"][$this->getTitle()]=serialize($this);
+		}
+	}
+
 	/**
 	 * Réinitialise a null la valeurs de tout les elements de la liste des items
 	 * 
@@ -1254,6 +1278,7 @@ class Display{
             }
             $str.= "</br>";
         }
+		
         return $str;
 	}
 
