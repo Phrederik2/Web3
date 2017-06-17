@@ -1,5 +1,10 @@
 <?php
-include_once("Controller/SessionControl.php");
+
+class AjaxControl  
+{
+    public function __construct()
+    {
+        include_once("Controller/SessionControl.php");
 $session = new Session();
 
 if (isset($_POST)){
@@ -39,3 +44,7 @@ if (isset($_POST)){
 }
 
 $session->saveSession();
+    }
+}
+
+
