@@ -48,8 +48,7 @@ function request(callback, value) {
  * @param String xhr 
  */
 function check(xhr) {
-
-  document.getElementById("schedule").innerHTML = xhr;
+  document.getElementById("ScheduleTab").innerHTML = xhr;
 }
 
 

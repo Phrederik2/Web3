@@ -44,7 +44,7 @@ class User extends Primary{
     function setListDay($listDay){$this->listDay= $listDay;}
     function getTimestamp(){return $this->timestamp;}
     function setTimestamp($timestamp){
-        
+       // datetest();
         date_default_timezone_set("Europe/Paris");
         
         $date=date('Y/m/d',($timestamp/1000));
