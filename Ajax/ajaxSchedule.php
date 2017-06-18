@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class de verification AJAX
+ * Passe dans le switch afin de determiner vers quel fonctions le script dans etre envoyer
+ * 
+ * En fin de switch, recrée le planning pour le renvoyer vers l'utilisateur
+ * Sauve la session pour les object persistant
+ */
 class AjaxControl  
 {
     public function __construct()

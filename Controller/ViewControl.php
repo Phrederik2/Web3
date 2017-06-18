@@ -317,6 +317,11 @@ public function getFreed()
         return $str;
     }
 
+/**
+ * Montre les info du user connecté
+ *
+ * @return void
+ */
     function getConnectedUser(){
         $str="";
         include("View/ConnexInfo.php");
