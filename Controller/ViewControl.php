@@ -77,6 +77,8 @@ class Controller{
         }
        Controller::$menu["Department"]=["menu","department","index"];
        Controller::$menu["Ressource"]=["menu","resource","index"];
+       Controller::$menu["Local"]=["menu","resource","index"];
+       Controller::$menu["Group"]=["menu","sgroup","index"];
        Controller::$menu["Schedule"]=["schedule","true","index"];
     }
 

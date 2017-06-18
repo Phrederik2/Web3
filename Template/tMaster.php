@@ -14,17 +14,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
-    <body>
-    <div id="testajax"></div>
-    %user%
-    <header>
-        <nav>      
-            %menu%
-        </nav>
-    </header>
-    <section>
-            %section%
-    </section>
-    </body>
+        <body>
+            <div id="blocPage">
+            <div id="testajax"></div>
+            %user%
+            <header>
+                <nav>      
+                    %menu%
+                </nav>
+            </header>
+            <section>
+                    %section%
+            </section>
+            </div>
+        </body>
 </html>
      <script src="script.js"></script>
