@@ -34,6 +34,13 @@ class SceduleControl{
         return $str;
     }
 
+    /**
+     * Cherche dans la liste si des elements font reference au slot/date en parametre
+     *
+     * @param int $slot
+     * @param Date $date
+     * @return string
+     */
     private function searchActivity($slot,$date)
     {
         $str="";
@@ -54,15 +61,21 @@ class SceduleControl{
        return $str;
     }
 
+    /**
+     * fait appelle a la vue CrtSettingView
+     *
+     * @return void
+     */
     public function getCrtSetting(){
         include("View/CrtSettingView.php");
         //return $str;
     }
 
-    public function resumeCache()
-    {
-        
-    }
+    /**
+     * Sauve en session les 2 tableau de données afin de les récuperé pour la verification en Ajax
+     *
+     * @return void
+     */
     public function saveCache()
     {
         $_SESSION["cells"]=serialize($this->cells);

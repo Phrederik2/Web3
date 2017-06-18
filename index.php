@@ -1,7 +1,13 @@
 
 <?php
+
 /**
- * Inclusion
+ * code hors classe "point d'entrée du programme"
+ * effectue les verification et recrée la page en fonctions des elements passé en get/post
+ */
+
+/**
+ * verifie si c'est une demande AJAX et l'envoi dans la class AJAX
  */
  
 if (isset($_POST)){
@@ -19,6 +25,9 @@ if (isset($_POST)){
         }
     }
 }
+/**
+ * si ce n'etait pas une demande AJAX le programme continue inclus les données
+ */
 if (!isset($ajax)) {
     
     include_once("Controller/SessionControl.php");
@@ -46,6 +55,9 @@ if (!isset($ajax)) {
     }
     else {
 
+    /**
+     * Si l'utilisateur est connecté: en fonctions des elements en GET, recompose les pages demandées.
+     */
     if (isset($_GET)) {
     foreach ($_GET as $key => $value) {
         switch ($key) {
