@@ -1,5 +1,5 @@
 <?php
-require_once("forma.php");
+require_once("Forma.php");
 
 $formName = Controller::getOrigin();
 $id = null;

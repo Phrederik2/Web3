@@ -107,22 +107,22 @@ class Controller{
         switch ($_GET["menu"]) {
             
             case $_GET["menu"]=='user' and Session::getUser()!=null and Session::getUser()->getIsAdmin()==true:
-                $this->setView("firstname","lastname","user","manage","department","title","code","view/UserView.php");
+                $this->setView("firstname","lastname","user","manage","department","title","code","View/UserView.php");
                 break;
             case 'department':
-                $this->setView("title","code","department","manage","user","lastName","firstName","view/ReferenceView.php");
+                $this->setView("title","code","department","manage","user","lastName","firstName","View/ReferenceView.php");
                 break;
             case 'resource':
-                $this->setView("title","code","resource","dispose","local","title","code","view/ReferenceView.php");
+                $this->setView("title","code","resource","dispose","local","title","code","View/ReferenceView.php");
                 break;
             case 'sgroup':
-                $this->setView("title","code","sgroup","linksgroupstudent","student","lastName","firstName","view/ReferenceView.php");
+                $this->setView("title","code","sgroup","linksgroupstudent","student","lastName","firstName","View/ReferenceView.php");
                 break;
             case 'student':
-                $this->setView("firstname","lastname","student","linksgroupstudent","sgroup","title","code","view/StudentView.php");
+                $this->setView("firstname","lastname","student","linksgroupstudent","sgroup","title","code","View/StudentView.php");
                 break;
             case 'professor':
-                $this->setView("firstname","lastname","professor","request","unavailability","firstday","lastday","view/ProfessorView.php");
+                $this->setView("firstname","lastname","professor","request","unavailability","firstday","lastday","View/ProfessorView.php");
                 break;
             
             default:
@@ -272,7 +272,7 @@ public function getFreed()
             $GEToption = "";
             $title = $menu;
             $crtList = $this->dbCo->getTableViewList($menu,$column1,$column2);
-            include("view/TableList.php");
+            include("View/TableList.php");
         }
         return $str;
 }
