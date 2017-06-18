@@ -293,7 +293,7 @@ public function getFreed()
         $GEToption = "assoc";
         $title = $destination." lié";
         $crtList = $this->dbCo->getTableViewAssociate($menu,$column1,$column2,$destination,$pivot,$idItem);
-        include("view/TableList.php");
+        include("View/TableList.php");
         return $str;
 }
 
@@ -313,7 +313,7 @@ public function getFreed()
         $GEToption = "freed";
         $title = $destination." non lié";
         $crtList = $this->dbCo->getTableViewFreed($menu,$column1,$column2,$destination,$pivot,$idItem);
-        include("view/TableList.php");
+        include("View/TableList.php");
         return $str;
     }
 
